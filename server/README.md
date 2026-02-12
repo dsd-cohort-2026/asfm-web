@@ -55,7 +55,7 @@ Start the development server:
 npm run dev
 ```
 
-The server will start on the configured port (default: 3000).
+The server will start on the configured port (default: 8080).
 
 ## API Endpoints
 

@@ -13,7 +13,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "echo \"No tests specified\" && exit 0",
     "dev": "nodemon index.js"
   },
   "author": "",

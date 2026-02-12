@@ -5,7 +5,7 @@ exports.getAllAnimals = async (req, res) => {
     const animals = await animalService.getAllAnimals();
     res.status(200).json(animals);
   } catch (error) {
-    console.log("Error fetching animals:", error);
-    res.status(500).json({ message: "An error occurred while fetching animals", error: error.message });
+    console.error("Error fetching animals:", error);
+    res.status(500).json({ message: "An error occurred while fetching animals" });
   }
 }
