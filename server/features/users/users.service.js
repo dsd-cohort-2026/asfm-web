@@ -17,3 +17,17 @@ exports.getAllUsers = async () => {
     role: user.role
   }));
 };
+
+exports.getUserById = async (id) => {
+  const user = await userRepository.findUnique(id);
+
+  return {
+    id: user.id,
+    first_name: capitalize(user.first_name),
+    last_name: capitalize(user.last_name),
+    email: user.email,
+    address: user.address,
+    imageUrl: user.imageUrl,
+    role: user.role
+  };
+};
