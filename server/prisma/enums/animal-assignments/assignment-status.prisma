@@ -1,4 +1,4 @@
-enum Animal_Assignment{
+enum Assignment_Status{
   PENDING
   APPROVED
 }
