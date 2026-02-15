@@ -7,4 +7,7 @@ model User {
   address     String
   role        Role      @default(USER)
   created_at  DateTime  @default(now())
+
+  user_assignments  AnimalAssignments[] @relation("User")
+  staff_assignments AnimalAssignments[] @relation("Staff")
 }
