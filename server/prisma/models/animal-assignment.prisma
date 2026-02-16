@@ -1,4 +1,4 @@
-model AnimalAssignments {
+model AnimalAssignment {
   id                        String            @id @default(uuid())
 
   // FK fields
