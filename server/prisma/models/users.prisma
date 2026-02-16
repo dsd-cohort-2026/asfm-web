@@ -11,4 +11,5 @@ model User {
   modified_animals   Animal[]
   user_assignments  AnimalAssignments[] @relation("User")
   staff_assignments AnimalAssignments[] @relation("Staff")
+  medical_logs      MedicalLogs[]
 }
