@@ -1,9 +1,9 @@
 model AnimalAssignment {
-  id          String            @id @default(uuid())
-  start_date  DateTime
-  end_date    DateTime
-  status      Assignment_Status
-  created_at  DateTime          @default(now())
+  id           String            @id @default(uuid())
+  start_date   DateTime
+  end_date     DateTime
+  status       Assignment_Status
+  created_at   DateTime          @default(now())
   medical_logs MedicalLog[]
 
   // FK fields
