@@ -1,5 +1,7 @@
 model Crate {
   id String @id @default(uuid())
+  size Size
+  status Crate_Status
 
   // FK fields
   item_id String @unique
