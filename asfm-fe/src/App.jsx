@@ -11,7 +11,7 @@ function App() {
   return (
 
     <div>
-      <TopNavBar status="Not_guess" username="Rami Ismael" />
+      <TopNavBar/>
       <div className="flex items-center justify-center h-screen gap-4">
       <Button className="bg-secondary text-secondary-foreground font-montserrat text-h2 px-xl py-xl">
         Testing ShadeCn Config

@@ -20,7 +20,7 @@ function TopNavBar() {
     <nav className="bg-secondary p-4 flex justify-between">
       <div className="flex flex-grid items-center gap-4">
         {/* Create the logo */}
-         <div  className="rounded-md-10  text-secondary-foreground border-black-400 px-4 py-2">Logo</div>
+         <div  className="rounded-md  text-secondary-foreground border-black px-4 py-2">Logo</div>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Home</Button>
         {/* is status it not guess add animal div */}
         {isAuthenticated && user.isAdmin && <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Animal</Button>}
@@ -37,7 +37,7 @@ function TopNavBar() {
             <div>
               <div className="bg-gray-200 px-4 py-2 rounded-2xl"> UserName</div>
             </div>
-            <Button variant="outline" className="text-secondary-foreground" onClick={logout}>Logout</Button>
+            <Button variant="outline" className="rounded-full border text-secondary-foreground" onClick={logout}>Logout</Button>
           </div>
         )}
       </div>

@@ -14,24 +14,24 @@ const { isAuthenticated, login, logout } = useAuthStore();
 
   // Debug: Log all routes
   return (
-    <nav className="bg-secondary p-4 flex justify-between">
-      <div className="flex flex-grid items-center gap-4">
+    <nav className="bg-secondary p-4 flex justify-between w-fit">
+      <div className="flex  items-center gap-4">
         {/* Create the logo */}
-         <div  className="rounded-md-10  text-secondary-foreground border-black-400 px-4 py-2">Logo</div>
+         <div  className="rounded-md  text-secondary-foreground border-black px-4 py-2">Logo</div>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Home</Button>
         {/* is status it not guess add animal div */}
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Animals</Button>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Inventory</Button>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Loans</Button>
-        <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Medical Logs</Button>
+        <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Med Log</Button>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex end gap-4">
 
         <div className="flex items-center gap-4">
         <div>
             <div className="bg-gray-200 px-4 py-2 rounded-2xl"> UserName</div>
         </div>
-        <Button variant="outline" className="text-secondary-foreground" onClick={handleLogOut}>Logout</Button>
+        <Button variant="outline" className="rounded-full border border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary" onClick={handleLogOut}>Logout</Button>
         </div>
       </div>
     </nav>
