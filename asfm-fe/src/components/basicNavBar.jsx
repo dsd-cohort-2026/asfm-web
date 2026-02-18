@@ -12,7 +12,7 @@ const { isAuthenticated, login, logout } = useAuthStore();
     navigate({ to: '/' }); // Navigate to home page after logout
   };
   const handleMedicalLog = () => {
-    navigate({to: "/medicalHistory"})
+    navigate({to: "/medical-logs"})
   }
 
   // Debug: Log all routes

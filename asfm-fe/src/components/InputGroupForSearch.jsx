@@ -3,7 +3,7 @@ import {
     SearchIcon,
   } from "lucide-react"
 function InputGroupForSearch() {
-     return <div className="basis-1/5">
+     return <div>
       <InputGroup className="border-highlight">
         <InputGroupInput placeholder="Search by Animal Id" />
         <InputGroupAddon>

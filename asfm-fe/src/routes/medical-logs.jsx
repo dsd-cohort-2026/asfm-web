@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import BasicNavBar from '@/components/basicNavBar'
 import SearchBar from '@/components/SearchBar' 
 
-export const Route = createFileRoute('/medicalHistory')({
+export const Route = createFileRoute('/medical-logs')({
   component: RouteComponent,
 })
 
