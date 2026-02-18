@@ -1,7 +1,7 @@
 const prisma = require("../../connections/prisma-client");
 
 const seedMany = async () => {
-  await prisma.user.createMany({
+  const users = await prisma.user.createMany({
     data: [
       {
         first_name: "hello",

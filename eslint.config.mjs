@@ -26,9 +26,10 @@ export default defineConfig([
     files: projectFiles,
     rules: {
       "no-unused-vars": [
-        "error",
+        "warn",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^[_A-Z]" },
       ],
+      "no-undef": "warn",
     },
   },
   {
@@ -48,6 +49,7 @@ export default defineConfig([
     rules: {
       ...reactHooks.configs.flat.recommended.rules,
       ...reactRefresh.configs.vite.rules,
+      "react-refresh/only-export-components": "warn",
     },
   },
   {

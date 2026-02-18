@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export const usePetStore = create((set) => ({
+export const usePetStore = create((set, get) => ({
   pets: [],
 
   addPet: (pet) =>
