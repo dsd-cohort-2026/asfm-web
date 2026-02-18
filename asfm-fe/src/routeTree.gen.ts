@@ -9,8 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MedicalHistoryRouteImport } from './routes/medicalHistory'
-import { Route as AdminPortalRouteImport } from './routes/adminPortal'
+import { Route as AdminPortalRouteImport } from './routes/admin-portal'
 import { Route as IndexRouteImport } from './routes/index'
 
 const MedicalHistoryRoute = MedicalHistoryRouteImport.update({
@@ -19,8 +18,8 @@ const MedicalHistoryRoute = MedicalHistoryRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminPortalRoute = AdminPortalRouteImport.update({
-  id: '/adminPortal',
-  path: '/adminPortal',
+  id: '/admin-portal',
+  path: '/admin-portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,26 +30,23 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/adminPortal': typeof AdminPortalRoute
-  '/medicalHistory': typeof MedicalHistoryRoute
+  '/admin-portal': typeof AdminPortalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/adminPortal': typeof AdminPortalRoute
-  '/medicalHistory': typeof MedicalHistoryRoute
+  '/admin-portal': typeof AdminPortalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/adminPortal': typeof AdminPortalRoute
-  '/medicalHistory': typeof MedicalHistoryRoute
+  '/admin-portal': typeof AdminPortalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/adminPortal' | '/medicalHistory'
+  fullPaths: '/' | '/admin-portal'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/adminPortal' | '/medicalHistory'
-  id: '__root__' | '/' | '/adminPortal' | '/medicalHistory'
+  to: '/' | '/admin-portal'
+  id: '__root__' | '/' | '/admin-portal'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -61,17 +57,10 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/medicalHistory': {
-      id: '/medicalHistory'
-      path: '/medicalHistory'
-      fullPath: '/medicalHistory'
-      preLoaderRoute: typeof MedicalHistoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/adminPortal': {
-      id: '/adminPortal'
-      path: '/adminPortal'
-      fullPath: '/adminPortal'
+    '/admin-portal': {
+      id: '/admin-portal'
+      path: '/admin-portal'
+      fullPath: '/admin-portal'
       preLoaderRoute: typeof AdminPortalRouteImport
       parentRoute: typeof rootRouteImport
     }

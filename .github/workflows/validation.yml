@@ -1,0 +1,89 @@
+name: Validation
+
+on:
+  pull_request:
+    paths:
+      - "asfm-fe/**"
+      - "server/**"
+      - "package.json"
+      - "package-lock.json"
+      - "eslint.config.mjs"
+      - ".prettierrc.json"
+      - ".prettierignore"
+      - ".github/workflows/**"
+  push:
+    branches:
+      - main
+      - "yoon-**"
+    paths:
+      - "asfm-fe/**"
+      - "server/**"
+      - "package.json"
+      - "package-lock.json"
+      - "eslint.config.mjs"
+      - ".prettierrc.json"
+      - ".prettierignore"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+jobs:
+  frontend-ci:
+    name: Shared lint and frontend build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: |
+            asfm-fe/package-lock.json
+            server/package-lock.json
+
+      - name: Install shared lint and format dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Lint frontend and backend
+        run: npm run lint
+
+      - name: Install frontend dependencies
+        run: npm ci --prefix asfm-fe
+
+      - name: Build frontend
+        run: npm run build:frontend
+
+  backend-ci:
+    name: Backend install and smoke checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    env:
+      DIRECT_URL: postgresql://postgres:postgres@localhost:5432/postgres
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Syntax check
+        run: node --check index.js
+
+      - name: Run tests
+        run: npm test
