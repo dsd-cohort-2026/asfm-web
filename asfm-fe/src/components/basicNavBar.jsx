@@ -20,7 +20,8 @@ const { isAuthenticated, login, logout } = useAuthStore();
          <div  className="rounded-md  text-secondary-foreground border-black px-4 py-2">Logo</div>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Home</Button>
         {/* is status it not guess add animal div */}
-        <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Animals</Button>
+        <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">All Users</Button>
+        <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary text-s">My Animals</Button>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Inventory</Button>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Loans</Button>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Med Log</Button>
