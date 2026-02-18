@@ -14,7 +14,7 @@ model Animal {
   picture       String
 
   // relationship fields
-  modifications      AnimalModification[]
+  modified_by        AnimalModification[]
   animal_assignments AnimalAssignment[]
   medical_logs       MedicalLog[]
 }
