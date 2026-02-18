@@ -1,7 +1,6 @@
 model Inventory {
   id              String   @id @default(uuid())
   quantity        Int
-  expiration_date DateTime
 
   // FK fields
   item_id String

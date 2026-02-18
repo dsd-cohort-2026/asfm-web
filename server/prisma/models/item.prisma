@@ -1,13 +1,14 @@
 model Item {
-  id          String        @id @default(uuid())
-  category    Item_Category
-  name        String
-  brand       String
-  description String
-  species     Species
-  unit        String
-  is_active   Boolean
-  created_at  DateTime      @default(now())
+  id              String        @id @default(uuid())
+  category        Item_Category
+  name            String
+  brand           String
+  description     String
+  species         Species
+  unit            String
+  is_active       Boolean
+  created_at      DateTime      @default(now())
+  expiration_date DateTime?
 
   // Relationship fields
   medication             Medication?
