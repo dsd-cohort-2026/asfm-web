@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import AdminPortal from '@/admin-portal'
 
-export const Route = createFileRoute('/adminPortal')({
+export const Route = createFileRoute('/admin-portal')({
   component: RouteComponent,
 })
 

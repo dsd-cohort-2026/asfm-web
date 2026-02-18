@@ -12,7 +12,7 @@ function TopNavBar() {
   const router = useRouter()
   
   const handleAdminPortalClick = () => {
-    navigate({ to: 'adminPortal' }); // Replace with your actual admin portal route
+    navigate({ to: 'admin-portal' }); // Replace with your actual admin portal route
   };
   // Debug: Log all routes
   console.log('Available routes:', router)
