@@ -8,7 +8,6 @@ model Item {
   unit            String
   is_active       Boolean
   created_at      DateTime      @default(now())
-  expiration_date DateTime?
 
   // Relationship fields
   medication             Medication?
