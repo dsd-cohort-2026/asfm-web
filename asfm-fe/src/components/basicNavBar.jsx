@@ -11,6 +11,9 @@ const { isAuthenticated, login, logout } = useAuthStore();
     logout();
     navigate({ to: '/' }); // Navigate to home page after logout
   };
+  const handleMedicalLog = () => {
+    navigate({to: "/medical-logs"})
+  }
 
   // Debug: Log all routes
   return (
@@ -24,7 +27,7 @@ const { isAuthenticated, login, logout } = useAuthStore();
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary text-s">My Animals</Button>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Inventory</Button>
         <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Loans</Button>
-        <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">Med Log</Button>
+        <Button variant="outline" className="rounded-full border border-secondary-foreground hover:bg-secondary-foreground hover:text-secondary" onClick={handleMedicalLog}>Med Log</Button>
       </div>
       <div className="flex end gap-4">
 
