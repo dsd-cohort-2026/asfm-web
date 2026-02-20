@@ -2,12 +2,12 @@ import { InputGroup , InputGroupInput , InputGroupAddon } from "./ui/input-group
 import {
     SearchIcon,
   } from "lucide-react"
-function InputGroupForSearch() {
+function InputGroupForSearch({placeholder_text , add_search_icon = false}) {
      return <div>
       <InputGroup className="border-highlight">
-        <InputGroupInput placeholder="Search by Animal Id" />
+        <InputGroupInput placeholder={placeholder_text} />
         <InputGroupAddon>
-        <SearchIcon/>
+          {add_search_icon && <SearchIcon/>}
         </InputGroupAddon>
       </InputGroup>
     </div>
