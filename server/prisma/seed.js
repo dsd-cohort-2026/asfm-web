@@ -74,15 +74,15 @@ const seedTheBase = async () => {
   // delete any pre-existing data
   await prisma.user.deleteMany({});
   await prisma.animal.deleteMany({});
-  await prisma.animalassignment.deleteMany({});
-  await prisma.animalmodification.deleteMany({});
+  await prisma.animalAssignment.deleteMany({});
+  await prisma.animalModification.deleteMany({});
   await prisma.item.deleteMany({});
   await prisma.medication.deleteMany({});
   await prisma.food.deleteMany({});
   await prisma.crate.deleteMany({});
   await prisma.inventory.deleteMany({});
-  await prisma.inventorytransaction.deleteMany({});
-  await prisma.medicallog.deleteMany({});
+  await prisma.inventoryTransaction.deleteMany({});
+  await prisma.medicalLog.deleteMany({});
 
   // wrap all seeding in $transaction ["atomic" -> all or nothing]
   const result = await prisma.$transaction(async (tx) => {
@@ -440,7 +440,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction1 = await tx.inventorytransaction.create({
+    const inventoryTransaction1 = await tx.inventoryTransaction.create({
       data: {
         quantity: 5,
         status: 'COMPLETE',
@@ -453,7 +453,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction2 = await tx.inventorytransaction.create({
+    const inventoryTransaction2 = await tx.inventoryTransaction.create({
       data: {
         quantity: 5,
         status: 'COMPLETE',
@@ -465,7 +465,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction3 = await tx.inventorytransaction.create({
+    const inventoryTransaction3 = await tx.inventoryTransaction.create({
       data: {
         quantity: 500,
         status: 'COMPLETE',
@@ -478,7 +478,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction4 = await tx.inventorytransaction.create({
+    const inventoryTransaction4 = await tx.inventoryTransaction.create({
       data: {
         quantity: 1,
         status: 'ACTIVE',
@@ -491,7 +491,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction5 = await tx.inventorytransaction.create({
+    const inventoryTransaction5 = await tx.inventoryTransaction.create({
       data: {
         quantity: 1,
         status: 'COMPLETE',
@@ -504,7 +504,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction6 = await tx.inventorytransaction.create({
+    const inventoryTransaction6 = await tx.inventoryTransaction.create({
       data: {
         quantity: 1,
         status: 'COMPLETE',
@@ -517,7 +517,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction7 = await tx.inventorytransaction.create({
+    const inventoryTransaction7 = await tx.inventoryTransaction.create({
       data: {
         quantity: 25,
         status: 'COMPLETE',
@@ -529,7 +529,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction8 = await tx.inventorytransaction.create({
+    const inventoryTransaction8 = await tx.inventoryTransaction.create({
       data: {
         quantity: 1,
         status: 'COMPLETE',
@@ -542,7 +542,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction9 = await tx.inventorytransaction.create({
+    const inventoryTransaction9 = await tx.inventoryTransaction.create({
       data: {
         quantity: 15,
         status: 'ACTIVE',
@@ -555,7 +555,7 @@ const seedTheBase = async () => {
       },
     });
 
-    const inventoryTransaction10 = await tx.inventorytransaction.create({
+    const inventoryTransaction10 = await tx.inventoryTransaction.create({
       data: {
         quantity: 5,
         status: 'COMPLETE',
@@ -617,7 +617,7 @@ const item1 = await prisma.item.create({
   },
 });
 
-const medicalLog1 = await prisma.medicallog.create({
+const medicalLog1 = await tx.medicalLog.create({
   data: {
     category: 'MEDICAL',
     general_notes: "he's a good boy",
