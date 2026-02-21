@@ -22,7 +22,6 @@ SKIP_PATHS = [
 
 
 def load_and_filter_diff(path):
-    """Read diff file, strip auto-generated file sections, and truncate if needed."""
     try:
         with open(path) as f:
             raw = f.read()
@@ -54,7 +53,6 @@ def load_and_filter_diff(path):
 
 
 def analyze(diff, pr_author, pr_title):
-    """Send the diff to Gemini and return the parsed JSON assessment."""
     client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
     prompt = f"""You are a coding instructor at a software development bootcamp reviewing student pull requests.
