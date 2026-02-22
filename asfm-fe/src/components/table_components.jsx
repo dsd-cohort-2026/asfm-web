@@ -6,8 +6,12 @@ import {
   TableHeader as ShadcnTableHeader,
   TableRow as ShadcnTableRow,
 } from "@/components/ui/table";
+import { Skeleton } from "@/components/ui/skeleton"
 
-export function ReusableTable({ columns , data , headerClassName="" , tablebodyRowClassName="" , containerClassName=""}) {
+export function ReusableTable({ columns , data , headerClassName="" , tablebodyRowClassName="" , containerClassName="" , 
+  isLoading,
+  numberOfRowForSkelton=10
+}) {
   return (
     <div className={containerClassName}>
       <Table>
@@ -21,15 +25,26 @@ export function ReusableTable({ columns , data , headerClassName="" , tablebodyR
             </ShadcnTableRow>
           </ShadcnTableHeader>
           <TableBody>
-            {data.map((row, rowIndex) => (
-              <ShadcnTableRow key={rowIndex} className={`${tablebodyRowClassName} `}>
-                {columns.map((column) => (
-                  <TableCell key={column.accessorKey} className={column.cellClassName}>
-                    {row[column.accessorKey]}
-                  </TableCell>
-                ))}
+            {isLoading
+            ?Array.from({ length: numberOfRowForSkelton }).map((_, i) => (
+              <ShadcnTableRow key={i} >
+                  {columns.map((column) => (
+                    <TableCell key={column.accessorKey} className={column.cellClassName}>
+                      <Skeleton className="h-4"/>
+                    </TableCell>
+                  ))}
               </ShadcnTableRow>
-            ))}
+            )):
+              data.map((row, rowIndex) => (
+                <ShadcnTableRow key={rowIndex} className={`${tablebodyRowClassName} `}>
+                  {columns.map((column) => (
+                    <TableCell key={column.accessorKey} className={column.cellClassName}>
+                      {row[column.accessorKey]}
+                    </TableCell>
+                  ))}
+                </ShadcnTableRow>
+              ))
+          }
       </TableBody>
   </Table>
   </ div>

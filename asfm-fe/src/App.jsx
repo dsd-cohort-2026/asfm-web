@@ -5,22 +5,16 @@ import { usePetStore } from './hooks/useStore'
 import  TopNavBar  from './components/NonMemberSignInNavBar'
 import {ReusableTable} from './components/table_components'
 import {mockLoanedItems} from './features/mockLoanedItems'
-
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
  const loanedItemsColumns = [
     {
       accessorKey: "itemDescription",
       header: "Item Description",
-      textSize: "md",
-      headClassName: "min-w-[160px]",
     },
     {
       accessorKey: "userId",
       header: "User ID",
-      textSize: "sm",
-      headClassName: "w-[120px] text-center",
-      cellClassName: "text-center",
     },
   ]
 
@@ -29,7 +23,7 @@ function App() {
 
     <>
       <TopNavBar/>
-      <div className="flex items-center justify-center h-screen gap-4">
+      <div className="flex items-center justify-center h-screen gap-4 pt-4">
       <Button className="bg-secondary text-secondary-foreground font-montserrat text-h2 px-xl py-xl">
         Testing ShadeCn Config
       </Button>
@@ -37,9 +31,9 @@ function App() {
       <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
       headerClassName="bg-secondary text-primary-foreground" 
       tablebodyRowClassName="bg-white hover:bg-secondary/20" 
-      containerClassName='overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm '
+      containerClassName='overflow-auto rounded-lg border border-pale-sky shadow-sm max-h-full'
+      isLoading={false}
       />
-
       </div>
     </>
   )
