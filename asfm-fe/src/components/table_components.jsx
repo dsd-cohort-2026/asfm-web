@@ -22,7 +22,7 @@ export function ReusableTable({ columns , data , headerClassName="" }) {
           </ShadcnTableHeader>
           <TableBody>
             {data.map((row, rowIndex) => (
-              <ShadcnTableRow key={rowIndex}>
+              <ShadcnTableRow key={rowIndex} className="hover:bg-secondary/20">
                 {columns.map((column) => (
                   <TableCell key={column.accessorKey} className={column.cellClassName}>
                     {row[column.accessorKey]}
