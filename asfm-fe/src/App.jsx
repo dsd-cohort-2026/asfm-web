@@ -33,7 +33,7 @@ function App() {
       headerClassName="bg-secondary text-primary-foreground" 
       tablebodyRowClassName="bg-white hover:bg-secondary/20" 
       containerClassName='overflow-auto rounded-lg border border-pale-sky shadow-sm max-h-full w-full'
-      isLoading={false}
+      isLoading={true}
       />
       </div>
     </>
