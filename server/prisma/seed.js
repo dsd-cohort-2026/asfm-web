@@ -2,17 +2,19 @@ const prisma = require('../connections/prisma-client');
 
 const seedTheBase = async () => {
   // delete any pre-existing data
-  await prisma.user.deleteMany({});
-  await prisma.animal.deleteMany({});
+  // keep THIS specific order for deletion
+  //    - deleting an an animal before an assignment leads to an error for an unreachable foreign key
   await prisma.animalAssignment.deleteMany({});
   await prisma.animalModification.deleteMany({});
-  await prisma.item.deleteMany({});
+  await prisma.inventoryTransaction.deleteMany({});
+  await prisma.medicalLog.deleteMany({});
   await prisma.medication.deleteMany({});
   await prisma.food.deleteMany({});
   await prisma.crate.deleteMany({});
   await prisma.inventory.deleteMany({});
-  await prisma.inventoryTransaction.deleteMany({});
-  await prisma.medicalLog.deleteMany({});
+  await prisma.item.deleteMany({});
+  await prisma.user.deleteMany({});
+  await prisma.animal.deleteMany({});
 
   // wrap all seeding in $transaction ["atomic" -> all or nothing]
   const result = await prisma.$transaction(
