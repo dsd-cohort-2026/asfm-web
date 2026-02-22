@@ -7,7 +7,7 @@ import {
   TableRow as ShadcnTableRow,
 } from "@/components/ui/table";
 
-export function ReusableTable({ columns , data , headerClassName="" }) {
+export function ReusableTable({ columns , data , headerClassName="" , tablebodyRowClassName="" }) {
   return (
     <div className="overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm">
       <Table>
@@ -22,7 +22,7 @@ export function ReusableTable({ columns , data , headerClassName="" }) {
           </ShadcnTableHeader>
           <TableBody>
             {data.map((row, rowIndex) => (
-              <ShadcnTableRow key={rowIndex} className="hover:bg-secondary/20">
+              <ShadcnTableRow key={rowIndex} className={`${tablebodyRowClassName} `}>
                 {columns.map((column) => (
                   <TableCell key={column.accessorKey} className={column.cellClassName}>
                     {row[column.accessorKey]}

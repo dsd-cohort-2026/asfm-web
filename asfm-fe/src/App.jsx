@@ -36,7 +36,9 @@ function App() {
         Testing ShadeCn Config
       </Button>
       <FilterSelect selectTriggerClassName="w-[300px]" selectItems={["approved", "pending", "denied"]} />
-      <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} headerClassName="bg-secondary text-primary-foreground" />
+      <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
+      headerClassName="bg-secondary text-primary-foreground" tablebodyRowClassName="bg-white hover:bg-secondary/20" />
+
       </div>
     </>
   )
