@@ -7,8 +7,6 @@ import {ReusableTable} from './components/table_components'
 import {mockLoanedItems} from './features/mockLoanedItems'
 
 function App() {
-  const pets = usePetStore((state) => state.pets)
-  const addPet= usePetStore((state) => state.addPet)
   // src/features/loaned-items/loanedItemsColumns.js
  const loanedItemsColumns = [
     {
