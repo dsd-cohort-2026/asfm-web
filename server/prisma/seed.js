@@ -789,6 +789,83 @@ const seedTheBase = async () => {
         inventory_id: item10.inventory.id,
       },
     });
+
+    const medicalLog6 = await tx.medicalLog.create({
+      data: {
+        category: 'MEDICAL',
+        general_notes: "he's a good boy",
+        behavioral_notes: 'refer to the general notes',
+        quantity_administered: '30 capsules prescribed',
+        dose: '1 capsule / day',
+        administered_at: new Date(),
+        prescription: '30 capsules taken by mouth, 1 / day',
+        documents: 'not really sure what will go here',
+
+        foster_user_id: user4.id,
+        animal_id: animal1.id,
+        assignment_id: animal1.animal_assignments.id,
+        medication_id: item5.medication.id,
+      },
+    });
+
+    const medicalLog7 = await tx.medicalLog.create({
+      data: {
+        category: 'MEDICAL',
+        general_notes: "he's a good boy",
+        behavioral_notes: 'refer to the general notes',
+        quantity_administered: '30 capsules prescribed',
+        dose: '1 capsule / day',
+        administered_at: new Date(),
+        prescription: '30 capsules taken by mouth, 1 / day',
+        documents: 'not really sure what will go here',
+
+        foster_user_id: user7.id,
+        animal_id: animal5.id,
+        assignment_id: animal5.animal_assignments.id,
+        medication_id: item7.medication.id,
+      },
+    });
+
+    const medicalLog8 = await tx.medicalLog.create({
+      data: {
+        category: 'BEHAVIORAL',
+        general_notes: 'tempered demeanor',
+        behavioral_notes: 'laaaaaaaiiiiiddd back',
+
+        animal_id: animal9.id,
+      },
+    });
+
+    const medicalLog9 = await tx.medicalLog.create({
+      data: {
+        category: 'BEHAVIORAL',
+        general_notes: "we've got a biter",
+        behavioral_notes: 'strong jaw',
+        documents: 'not really sure what will go here',
+
+        foster_user_id: user9.id,
+        animal_id: animal1.id,
+        assignment_id: animal1.animal_assignments.id,
+      },
+    });
+
+    const medicalLog10 = await tx.medicalLog.create({
+      data: {
+        category: 'VETERINARY',
+        general_notes: 'routine checkup, renwe prescription',
+        behavioral_notes: 'no notes',
+        quantity_administered: '30 capsules prescribed',
+        dose: '1 capsule / day',
+        administered_at: new Date(),
+        prescription: '30 capsules taken by mouth, 1 / day',
+        documents: 'not really sure what will go here',
+
+        foster_user_id: user4.id,
+        animal_id: animal4.id,
+        assignment_id: animal4.animal_assignments.id,
+        medication_id: item8.medication.id,
+      },
+    });
   });
 };
 
@@ -804,39 +881,3 @@ const main = async () => {
 };
 
 main();
-
-const medicalLog6 = await tx.medicalLog.create({
-  data: {
-    category: 'MEDICAL',
-    general_notes: "he's a good boy",
-    behavioral_notes: 'refer to the general notes',
-    quantity_administered: '30 capsules prescribed',
-    dosed: '1 capsule / day',
-    administered_at: new Date(),
-    prescription: '30 capsules taken by mouth, 1 / day',
-    documents: 'not really sure what will go here',
-
-    foster_user_id: user2.id,
-    animal_id: animal1,
-    assignment_id: animal1.animal_assignments.id,
-    medication_id: item1.medication.id,
-  },
-});
-
-const medicalLog1 = await tx.medicalLog.create({
-  data: {
-    category: 'MEDICAL',
-    general_notes: "he's a good boy",
-    behavioral_notes: 'refer to the general notes',
-    quantity_administered: '30 capsules prescribed',
-    dosed: '1 capsule / day',
-    administered_at: new Date(),
-    prescription: '30 capsules taken by mouth, 1 / day',
-    documents: 'not really sure what will go here',
-
-    foster_user_id: user2.id,
-    animal_id: animal1,
-    assignment_id: animal1.animal_assignments.id,
-    medication_id: item1.medication.id,
-  },
-});
