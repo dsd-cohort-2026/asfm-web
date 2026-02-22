@@ -16,6 +16,7 @@ function App() {
       accessorKey: "userId",
       header: "User ID",
     },
+    
   ]
 
 
@@ -31,7 +32,7 @@ function App() {
       <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
       headerClassName="bg-secondary text-primary-foreground" 
       tablebodyRowClassName="bg-white hover:bg-secondary/20" 
-      containerClassName='overflow-auto rounded-lg border border-pale-sky shadow-sm max-h-full'
+      containerClassName='overflow-auto rounded-lg border border-pale-sky shadow-sm max-h-full w-full'
       isLoading={false}
       />
       </div>
