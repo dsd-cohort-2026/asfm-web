@@ -9,9 +9,9 @@ import {
 
 export function ReusableTable({ columns , data , headerClassName="" }) {
   return (
-    <div className="overflow-hidden rounded-lg border  border-pale-sky shadow-sm">
+    <div className="overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm">
       <Table>
-        <ShadcnTableHeader className={headerClassName}>
+        <ShadcnTableHeader className={`sticky top-0 z-10 ${headerClassName}`}>
             <ShadcnTableRow>
               {columns.map((column) => (
                 <TableHead key={column.accessorKey} className={column.headClassName}>
@@ -32,6 +32,6 @@ export function ReusableTable({ columns , data , headerClassName="" }) {
             ))}
       </TableBody>
   </Table>
-  </div>
+  </ div>
   );
 };
