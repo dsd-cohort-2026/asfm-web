@@ -1,4 +1,3 @@
-import './App.css'
 import FilterSelect from './components/custom/FilterSelect'
 import { Button } from './components/ui/button'
 import { usePetStore } from './hooks/useStore'
