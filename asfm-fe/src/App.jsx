@@ -5,6 +5,7 @@ import { usePetStore } from './hooks/useStore'
 import  TopNavBar  from './components/NonMemberSignInNavBar'
 import {ReusableTable} from './components/table_components'
 import {mockLoanedItems} from './features/mockLoanedItems'
+import { DatePickerSimple } from './components/dateTimePicker'
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
  const loanedItemsColumns = [
@@ -37,12 +38,15 @@ function App() {
         Testing ShadeCn Config
       </Button>
       <FilterSelect selectTriggerClassName="w-[300px]" selectItems={["approved", "pending", "denied"]} />
-      <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
-      headerClassName="bg-secondary text-primary-foreground" 
-      tablebodyRowClassName="bg-white hover:bg-secondary/20" 
-      containerClassName='overflow-auto rounded-lg border border-pale-sky shadow-sm max-h-full w-full'
-      isLoading={false}
-      />
+      <div className='flex flex-col max-h-full gap-4 '>
+        <DatePickerSimple/>
+        <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
+        headerClassName="bg-secondary text-primary-foreground" 
+        tablebodyRowClassName="bg-white hover:bg-secondary/20" 
+        containerClassName='overflow-auto rounded-lg border border-pale-sky shadow-sm max-h-full w-full'
+        isLoading={false}
+        />
+      </div>
       </div>
     </>
   )
