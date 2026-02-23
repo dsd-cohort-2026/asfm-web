@@ -38,8 +38,8 @@ function App() {
         Testing ShadeCn Config
       </Button>
       <FilterSelect selectTriggerClassName="w-[300px]" selectItems={["approved", "pending", "denied"]} />
-      <div className='flex flex-col max-h-full gap-4 '>
-        <DatePickerSimple/>
+      <div className='flex flex-col max-h-full gap-4 w-full '>
+        <DatePickerSimple fieldLabelName="Loan Date"/>
         <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
         headerClassName="bg-secondary text-primary-foreground" 
         tablebodyRowClassName="bg-white hover:bg-secondary/20" 

@@ -10,13 +10,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { format } from "date-fns"
+import { CalendarIcon } from "lucide-react"
 
-export function DatePickerSimple() {
+export function DatePickerSimple({fieldLabelName}) {
   const [date, setDate] = React.useState()
 
   return (
     <Field className="mx-auto w-44">
-      <FieldLabel htmlFor="date-picker-simple">Date</FieldLabel>
+      <FieldLabel htmlFor="date-picker-simple">{fieldLabelName}</FieldLabel>
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -24,6 +25,7 @@ export function DatePickerSimple() {
             id="date-picker-simple"
             className="justify-start font-normal"
           >
+          <CalendarIcon />
             {date ? format(date, "PPP") : <span>Pick a date</span>}
           </Button>
         </PopoverTrigger>
