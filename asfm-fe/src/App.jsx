@@ -16,6 +16,14 @@ function App() {
       accessorKey: "userId",
       header: "User ID",
     },
+    {
+      accessorKey: "loanedAt" , 
+      header: "Loan Date"
+    },
+    {
+      accessorKey: "expectedReturnDate" , 
+      header:'Return Date'
+    }
     
   ]
 
@@ -33,7 +41,7 @@ function App() {
       headerClassName="bg-secondary text-primary-foreground" 
       tablebodyRowClassName="bg-white hover:bg-secondary/20" 
       containerClassName='overflow-auto rounded-lg border border-pale-sky shadow-sm max-h-full w-full'
-      isLoading={true}
+      isLoading={false}
       />
       </div>
     </>
