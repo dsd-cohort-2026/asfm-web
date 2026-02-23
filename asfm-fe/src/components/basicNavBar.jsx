@@ -21,7 +21,7 @@ function BasicNavBar() {
       <div className="flex  items-center gap-4">
         {/* Create the logo */}
         <div className="rounded-md  text-secondary-foreground border-black px-4 py-2">Logo</div>
-        <Button variant="outline">Home1</Button>
+        <Button variant="outline">Home</Button>
         {/* is status it not guess add animal div */}
         <Button variant="outline">All Users</Button>
         <Button variant="outline" className="text-s">
