@@ -12,7 +12,8 @@ function App() {
     <>
       <TopNavBar />
       <div className="flex items-center justify-center h-screen gap-4">
-        <Button variant="default">Default button</Button>
+        <Button >Default button</Button>
+        <Button disabled>Disabled button</Button>
         <Button variant="destructive">Destructive button</Button>
         <Button variant="outline">Outline button</Button>
         <Button variant="secondary">Secondary button</Button>
