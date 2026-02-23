@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
+@theme {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -16,52 +16,74 @@
   --radius-4xl: calc(var(--radius) + 16px);
 
   /*Fonts */
-  --font-open-sans: var(--custom-font-open-sans);
-  --font-montserrat: var(--custom-font-montserrat);
+  --font-family-open-sans: 'Open Sans', sans-serif;
+  --font-family-montserrat: 'Montserrat', sans-serif;
 
   /*Fonts Size*/
-  --text-body: var(--font-size-base);
-  --text-secondary-base: var(--font-size-secondary-base);
-  --text-h1: var(--font-size-h1);
-  --text-h2: var(--font-size-h2);
-  --text-h3: var(--font-size-h3);
-  --text-h4: var(--font-size-h4);
-  --text-h5: var(--font-size-h5);
+  --text-body: 1rem;
+  --text-secondary-base: 0.75rem;
+  --text-h1: 2rem;
+  --text-h2: 1.5rem;
+  --text-h3: 1.25rem;
+  --text-h4: 1.125rem;
+  --text-h5: 1rem;
 
   /* Spacing */
-  --spacing-xs: var(--space-xs);
-  --spacing-sm: var(--space-sm);
-  --spacing-md: var(--space-md);
-  --spacing-lg: var(--space-lg);
-  --spacing-xl: var(--space-xl);
-  --spacing-2xl: var(--space-2xl);
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 4rem;
 
   /* Colors  */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+
+  /* Primary */
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
+  /* Secondary */
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+
+  /* Card */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* Popover */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Muted */
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
+  /* Accent */
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+
+  /* Highlight */
   --color-highlight: var(--highlight);
   --color-highlight-foreground: var(--highlight-foreground);
+
+  /* Destructive */
   --color-destructive: var(--destructive);
+
+  /* Borders and Inputs */
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  /* Charts */
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
+  /* Sidebar */
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -73,40 +95,19 @@
 }
 
 :root {
+  --radius: 0.625rem;
+
   /*Colors */
   --background: #f8f8f8;
-  --foreground: #000000;
+  --foreground: #010c0a;
   --primary: #063d30;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #fdfdfd;
   --secondary: #9cecb9;
-  --secondary-foreground: #000000;
+  --secondary-foreground: #021813;
   --accent: #c4e2ed;
-  --accent-foreground: #000000;
+  --accent-foreground: #021813;
   --highlight: #fceb0d;
-  --highlight-foreground: #000000;
-
-  /*Fonts */
-  --custom-font-open-sans: "Open Sans", sans-serif;
-  --custom-font-montserrat: "Montserrat", sans-serif;
-
-  /*Fonts Sizes */
-  --font-size-base: 1rem;
-  --font-size-secondary-base: 0.75rem;
-  --font-size-h1: 2rem;
-  --font-size-h2: 1.5rem;
-  --font-size-h3: 1.25rem;
-  --font-size-h4: 1.125rem;
-  --font-size-h5: 1rem;
-
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 4rem;
-
-  --radius: 0.625rem;
+  --highlight-foreground: #021813;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -179,9 +180,21 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--color-border);
+    outline-color: rgb(from var(--color-ring) r g b / 50%);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-family-open-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-montserrat);
   }
 }
