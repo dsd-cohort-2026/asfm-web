@@ -3,6 +3,7 @@ import { Button } from './components/ui/button';
 import { usePetStore } from './hooks/useStore';
 import TopNavBar from './components/NonMemberSignInNavBar';
 import SearchBar from './components/SearchBar';
+import AdminBadge from './components/custom/AdminBadge';
 
 function App() {
   const pets = usePetStore((state) => state.pets);
@@ -12,6 +13,7 @@ function App() {
     <>
       <TopNavBar />
       <div className="flex items-center justify-center h-screen gap-4">
+        <AdminBadge badgeClassName="font-semibold text-lg px-2" />
         <Button >Default button</Button>
         <Button disabled>Disabled button</Button>
         <Button variant="destructive">Destructive button</Button>
