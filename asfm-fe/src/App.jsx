@@ -28,24 +28,25 @@ function App() {
   return (
     <>
       <TopNavBar />
-      <div className="flex items-center justify-center h-screen gap-4">
-        <Button >Default button</Button>
-        <Button disabled>Disabled button</Button>
-        <Button variant="destructive">Destructive button</Button>
-        <Button variant="outline">Outline button</Button>
-        <Button variant="secondary">Secondary button</Button>
-        <Button variant="ghost">Ghost button</Button>
-        <Button variant="link">Link button</Button>
-        <FilterSelect
-          selectTriggerClassName="w-[300px]"
-          selectItems={['approved', 'pending', 'denied']}
+      <div className='flex flex-col gap-8 py-8'>
+        <div className="flex items-center justify-center h-full gap-8">
+          <Button >Default button</Button>
+          <Button disabled>Disabled button</Button>
+          <Button variant="destructive">Destructive button</Button>
+          <Button variant="outline">Outline button</Button>
+          <Button variant="secondary">Secondary button</Button>
+          <Button variant="ghost">Ghost button</Button>
+          <Button variant="link">Link button</Button>
+          <FilterSelect
+            selectTriggerClassName="w-[300px]"
+            selectItems={['approved', 'pending', 'denied']}
+          />
+        </div>
+        <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
+        headerClassName="bg-secondary text-primary-foreground" 
+        tablebodyRowClassName="bg-white hover:bg-secondary/20" 
+        containerClassName='overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm '
         />
-      <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
-      headerClassName="bg-secondary text-primary-foreground" 
-      tablebodyRowClassName="bg-white hover:bg-secondary/20" 
-      containerClassName='overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm '
-      />
-
       </div>
     </>
   );
