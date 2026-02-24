@@ -38,3 +38,6 @@ coverage/
 *.njsproj
 *.sln
 *.sw?
+
+# Mock data
+mock-api/db.json

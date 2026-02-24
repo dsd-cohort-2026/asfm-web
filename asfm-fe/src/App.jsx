@@ -1,8 +1,8 @@
-import './App.css'
-import FilterSelect from './components/custom/FilterSelect'
-import { Button } from './components/ui/button'
-import { usePetStore } from './hooks/useStore'
-import  TopNavBar  from './components/NonMemberSignInNavBar'
+import FilterSelect from './components/custom/FilterSelect';
+import { Button } from './components/ui/button';
+import { usePetStore } from './hooks/useStore';
+import TopNavBar from './components/NonMemberSignInNavBar';
+import SearchBar from './components/SearchBar';
 import {ReusableTable} from './components/table_components'
 import {mockLoanedItems} from './features/mockLoanedItems'
 
@@ -26,14 +26,20 @@ function App() {
 
 
   return (
-
     <>
-      <TopNavBar/>
+      <TopNavBar />
       <div className="flex items-center justify-center h-screen gap-4">
-      <Button className="bg-secondary text-secondary-foreground font-montserrat text-h2 px-xl py-xl">
-        Testing ShadeCn Config
-      </Button>
-      <FilterSelect selectTriggerClassName="w-[300px]" selectItems={["approved", "pending", "denied"]} />
+        <Button >Default button</Button>
+        <Button disabled>Disabled button</Button>
+        <Button variant="destructive">Destructive button</Button>
+        <Button variant="outline">Outline button</Button>
+        <Button variant="secondary">Secondary button</Button>
+        <Button variant="ghost">Ghost button</Button>
+        <Button variant="link">Link button</Button>
+        <FilterSelect
+          selectTriggerClassName="w-[300px]"
+          selectItems={['approved', 'pending', 'denied']}
+        />
       <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
       headerClassName="bg-secondary text-primary-foreground" 
       tablebodyRowClassName="bg-white hover:bg-secondary/20" 
@@ -42,7 +48,7 @@ function App() {
 
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
