@@ -48,6 +48,11 @@ app.get("/health", (req, res) => {
   res.status(200).json({ message: "Server is healthy" });
 });
 
+// Gets rid of route not found when browser requests favicon file
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end();
+});
+
 // keep these AFTER all routes, and in this order
 app.use(routeNotFoundHandler);
 app.use(globalErrorHandler);
