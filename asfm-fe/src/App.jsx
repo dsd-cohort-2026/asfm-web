@@ -2,6 +2,7 @@ import FilterSelect from './components/custom/FilterSelect';
 import { Button } from './components/ui/button';
 import { usePetStore } from './hooks/useStore';
 import TopNavBar from './components/NonMemberSignInNavBar';
+import DashboardCard from './components/custom/DashboardCard'
 import { ModalDialog } from './components/ModalDialog';
 import { useState } from 'react';
 
@@ -56,6 +57,11 @@ function App() {
             <input type="text" className="border" />
           </form>
         </ModalDialog>
+      </div>
+      <div className='flex justify-center'>Admin Dashboard Card</div>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 px-5'>
+        <DashboardCard title={"Testing Title"} navLink={"admin-portal"} itemsArray={[{name: 'Chewy', species: 'dog', sex: 'male', dob: '09/15/16'}, {name: 'Bailey', species: 'dog', sex: 'female', dob: '12/26/19'}]}/>
+        <DashboardCard title={"Testing Title 2"} navLink={"admin-portal"} itemsArray={[{name: 'Chewy', species: 'dog', sex: 'male', dob: '09/15/16'}, {name: 'Bailey', species: 'dog', sex: 'female', dob: '12/26/19'}]}/>
       </div>
     </>
   );
