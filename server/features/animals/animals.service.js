@@ -53,6 +53,4 @@ exports.getAnimalById = async (id) => {
     picture: animal.picture,
     user_id: animal.user_id
   };
-
-  return formattedAnimals;
 }
