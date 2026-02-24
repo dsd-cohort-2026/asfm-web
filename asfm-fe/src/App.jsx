@@ -1,8 +1,6 @@
 import FilterSelect from './components/custom/FilterSelect';
 import { Button } from './components/ui/button';
-import { usePetStore } from './hooks/useStore';
 import TopNavBar from './components/NonMemberSignInNavBar';
-import SearchBar from './components/SearchBar';
 import {ReusableTable} from './components/table_components'
 import {mockLoanedItems} from './features/mockLoanedItems'
 
