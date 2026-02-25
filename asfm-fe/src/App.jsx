@@ -3,7 +3,7 @@ import { Button } from './components/ui/button';
 import { usePetStore } from './hooks/useStore';
 import TopNavBar from './components/NonMemberSignInNavBar';
 import SearchBar from './components/SearchBar';
-import AdminBadge from './components/custom/AdminBadge';
+import CustomBadge from './components/custom/CustomBadge';
 
 function App() {
   const pets = usePetStore((state) => state.pets);
@@ -12,8 +12,11 @@ function App() {
   return (
     <>
       <TopNavBar />
+      <div className='pt-5 flex gap-x-4'>
+        <CustomBadge badgeClassName="font-semibold text-sm px-5 bg-destructive text-white " isChecked={false} text={"overdue"}/>
+          <CustomBadge badgeClassName="font-semibold text-lg px-2" isChecked={true} text={"Admin"}/>
+      </div>
       <div className="flex items-center justify-center h-screen gap-4">
-        <AdminBadge badgeClassName="font-semibold text-lg px-2" />
         <Button >Default button</Button>
         <Button disabled>Disabled button</Button>
         <Button variant="destructive">Destructive button</Button>
