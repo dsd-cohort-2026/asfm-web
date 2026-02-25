@@ -1,6 +1,7 @@
 import { Button } from './ui/button';
 import { useAuthStore } from '../hooks/useAuthStore';
 import { useNavigate, useRouter } from '@tanstack/react-router';
+import logo from '../assets/logo.png';
 
 function TopNavBar() {
   const { isAuthenticated, login, logout } = useAuthStore();
@@ -17,13 +18,12 @@ function TopNavBar() {
   // Debug: Log all routes
   console.log('Available routes:', router);
   return (
-    <nav className="bg-secondary p-4 flex justify-between">
+    <nav className="bg-secondary p-4 flex gap-4">
+      <img src={logo} alt='Company Logo' className='h-17 w-17 -m-3' loading='lazy'/>
       <div className="flex flex-grid items-center gap-4">
         {/* Create the logo */}
-        <div className="rounded-md  text-secondary-foreground border-black px-4 py-2">Logo</div>
         <Button
           variant="outline"
-          className="rounded-full hover:bg-secondary-foreground hover:text-secondary"
         >
           Home
         </Button>
@@ -35,7 +35,7 @@ function TopNavBar() {
           </Button>
         )}
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 ml-auto">
         {!isAuthenticated ? (
           <>
             <Button variant="outline" onClick={login}>
@@ -44,9 +44,9 @@ function TopNavBar() {
             <Button variant="outline">Sign Up</Button>
           </>
         ) : (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ml-auto">
             <div>
-              <div className="bg-gray-200 px-4 py-2 rounded-2xl"> UserName</div>
+              <div className="bg-gray-200 px-4 py-2 rounded-2xl">UserName</div>
             </div>
             <Button variant="outline" onClick={logout}>
               Logout
