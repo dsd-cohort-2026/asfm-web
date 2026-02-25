@@ -6,7 +6,8 @@
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"asfm-fe/**/*.{js,jsx,css,html,json,md}\" \"server/**/*.js\" \"server/**/*.json\" \".github/workflows/*.{yml,yaml}\"",
     "format:check": "prettier --check \"asfm-fe/**/*.{js,jsx,css,html,json,md}\" \"server/**/*.js\" \"server/**/*.json\" \".github/workflows/*.{yml,yaml}\"",
-    "build:frontend": "npm --prefix asfm-fe run build"
+    "build:frontend": "npm --prefix asfm-fe run build",
+    "mock:api": "json-server --watch mock-api/db.json --routes mock-api/routes.json --port 3001"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -15,6 +16,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "json-server": "0.17.4",
     "prettier": "^3.2.5"
   }
 }

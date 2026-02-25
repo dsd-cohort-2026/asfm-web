@@ -1,0 +1,295 @@
+{
+  "info": {
+    "name": "Animal Shelter Foster Management API",
+    "description": "All API endpoints for the animal shelter foster management system.\n\nTo switch between mock and real server, change the `baseUrl` collection variable:\n- Mock server: http://localhost:3001/api\n- Real server:  http://localhost:8080/api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001/api",
+      "description": "Change this to http://localhost:8080/api to hit the real server"
+    }
+  ],
+  "item": [
+    {
+      "name": "Animals",
+      "item": [
+        {
+          "name": "Get All Animals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/animals",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "animals"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Animal by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/animals/550e8400-e29b-41d4-a716-446655550001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "animals",
+                "550e8400-e29b-41d4-a716-446655550001"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/550e8400-e29b-41d4-a716-446655440101",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "550e8400-e29b-41d4-a716-446655440101"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "item": [
+        {
+          "name": "Get All Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "items"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Item by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/items/550e8400-e29b-41d4-a716-446655440004",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "items",
+                "550e8400-e29b-41d4-a716-446655440004"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Get All Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory Item by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/550e8400-e29b-41d4-a716-446655440001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "550e8400-e29b-41d4-a716-446655440001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Inventory Quantity",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/inventory/550e8400-e29b-41d4-a716-446655440001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "550e8400-e29b-41d4-a716-446655440001"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory Transactions",
+      "item": [
+        {
+          "name": "Get All Inventory Transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory-transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory-transactions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Transaction by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory-transactions/550e8400-e29b-41d4-a716-446655660001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory-transactions",
+                "550e8400-e29b-41d4-a716-446655660001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Inventory Transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventory_id\": \"550e8400-e29b-41d4-a716-446655440001\",\n  \"item_id\": \"550e8400-e29b-41d4-a716-446655440004\",\n  \"foster_user_id\": \"550e8400-e29b-41d4-a716-446655440101\",\n  \"created_by_staff_user_id\": \"550e8400-e29b-41d4-a716-446655440202\",\n  \"quantity\": 1,\n  \"type\": \"LOAN\",\n  \"status\": \"PENDING\",\n  \"notes\": \"Crate for new foster\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/inventory-transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory-transactions"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Medical Logs",
+      "item": [
+        {
+          "name": "Get All Medical Logs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medical-logs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medical-logs"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Medical Log by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medical-logs/550e8400-e29b-41d4-a716-446655770001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medical-logs",
+                "550e8400-e29b-41d4-a716-446655770001"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
