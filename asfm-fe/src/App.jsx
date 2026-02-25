@@ -1,14 +1,30 @@
 import FilterSelect from './components/custom/FilterSelect';
 import { Button } from './components/ui/button';
-import { usePetStore } from './hooks/useStore';
 import TopNavBar from './components/NonMemberSignInNavBar';
+import {ReusableTable} from './components/table_components'
+import {mockLoanedItems} from './features/mockLoanedItems'
 import DashboardCard from './components/custom/DashboardCard'
 import { ModalDialog } from './components/ModalDialog';
 import { useState } from 'react';
 
 function App() {
-  const pets = usePetStore((state) => state.pets);
-  const addPet = usePetStore((state) => state.addPet);
+  // src/features/loaned-items/loanedItemsColumns.js
+ const loanedItemsColumns = [
+    {
+      accessorKey: "itemDescription",
+      header: "Item Description",
+      textSize: "md",
+      headClassName: "min-w-[160px]",
+    },
+    {
+      accessorKey: "userId",
+      header: "User ID",
+      textSize: "sm",
+      headClassName: "w-[120px] text-center",
+      cellClassName: "text-center",
+    },
+  ]
+
 
   // For modal example
   const [loading, setLoading] = useState(false);
@@ -63,6 +79,11 @@ function App() {
         <DashboardCard title={"Testing Title"} navLink={"admin-portal"} itemsArray={[{name: 'Chewy', species: 'dog', sex: 'male', dob: '09/15/16'}, {name: 'Bailey', species: 'dog', sex: 'female', dob: '12/26/19'}]}/>
         <DashboardCard title={"Testing Title 2"} navLink={"admin-portal"} itemsArray={[{name: 'Chewy', species: 'dog', sex: 'male', dob: '09/15/16'}, {name: 'Bailey', species: 'dog', sex: 'female', dob: '12/26/19'}]}/>
       </div>
+              <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
+        headerClassName="bg-secondary text-primary-foreground" 
+        tablebodyRowClassName="bg-white hover:bg-secondary/20" 
+        containerClassName='overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm relative w-full px-4 lg:px-8'
+        />
     </>
   );
 }
