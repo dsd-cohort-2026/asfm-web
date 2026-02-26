@@ -1,8 +1,6 @@
-import BasicNavBar from "@/components/basicNavBar";
+import BasicNavBar from '@/components/basicNavBar';
 function AdminPortal() {
-    return (
-        <BasicNavBar/>
-    );
+  return <BasicNavBar />;
 }
 
 export default AdminPortal;
