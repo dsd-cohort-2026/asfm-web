@@ -19,14 +19,10 @@ function TopNavBar() {
   console.log('Available routes:', router);
   return (
     <nav className="bg-secondary p-4 flex gap-4">
-      <img src={logo} alt='Company Logo' className='h-17 w-17 -m-3' loading='lazy'/>
+      <img src={logo} alt="Company Logo" className="h-17 w-17 -m-3" loading="lazy" />
       <div className="flex flex-grid items-center gap-4">
         {/* Create the logo */}
-        <Button
-          variant="outline"
-        >
-          Home
-        </Button>
+        <Button variant="outline">Home</Button>
         {/* is status it not guess add animal div */}
         {isAuthenticated && user.isAdmin && <Button variant="outline">Animal</Button>}
         {isAuthenticated && !user.isAdmin && (

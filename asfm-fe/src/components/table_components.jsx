@@ -5,33 +5,39 @@ import {
   TableHead,
   TableHeader as ShadcnTableHeader,
   TableRow as ShadcnTableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
-export function ReusableTable({ columns , data , headerClassName="" , tablebodyRowClassName="" , containerClassName=""}) {
+export function ReusableTable({
+  columns,
+  data,
+  headerClassName = '',
+  tablebodyRowClassName = '',
+  containerClassName = '',
+}) {
   return (
     <div className={containerClassName}>
       <Table>
         <ShadcnTableHeader className={`sticky top-0 z-10 ${headerClassName}`}>
-            <ShadcnTableRow>
+          <ShadcnTableRow>
+            {columns.map((column) => (
+              <TableHead key={column.accessorKey} className={column.headClassName}>
+                {column.header}
+              </TableHead>
+            ))}
+          </ShadcnTableRow>
+        </ShadcnTableHeader>
+        <TableBody>
+          {data.map((row, rowIndex) => (
+            <ShadcnTableRow key={rowIndex} className={`${tablebodyRowClassName} `}>
               {columns.map((column) => (
-                <TableHead key={column.accessorKey} className={column.headClassName}>
-                  {column.header}
-                </TableHead>
+                <TableCell key={column.accessorKey} className={column.cellClassName}>
+                  {row[column.accessorKey]}
+                </TableCell>
               ))}
             </ShadcnTableRow>
-          </ShadcnTableHeader>
-          <TableBody>
-            {data.map((row, rowIndex) => (
-              <ShadcnTableRow key={rowIndex} className={`${tablebodyRowClassName} `}>
-                {columns.map((column) => (
-                  <TableCell key={column.accessorKey} className={column.cellClassName}>
-                    {row[column.accessorKey]}
-                  </TableCell>
-                ))}
-              </ShadcnTableRow>
-            ))}
-      </TableBody>
-  </Table>
-  </ div>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
-};
+}
