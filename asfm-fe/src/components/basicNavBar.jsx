@@ -21,7 +21,7 @@ function BasicNavBar() {
     <nav className="bg-secondary p-4 flex justify-between">
       <div className="flex items-center gap-4">
         {/* Create the logo */}
-        <img src={logo} alt='Company Logo' className='h-17 w-17 -m-3' loading='lazy' />
+        <img src={logo} alt="Company Logo" className="h-17 w-17 -m-3" loading="lazy" />
         <Button variant="outline">Home</Button>
         {/* is status it not guess add animal div */}
         <Button variant="outline">All Users</Button>
