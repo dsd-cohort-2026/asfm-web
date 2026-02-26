@@ -31,7 +31,6 @@ function SignInForm() {
     <div className="flex justify-center items-center h-screen">
       <Card className="w-100 m-auto">
         <CardHeader>
-          {/* <h2 className="text-center text-4xl">Sign In</h2> */}
           <CardTitle className="text-3xl text-center">Sign In</CardTitle>
           <CardDescription className="text-center">
             Enter your email below to sign in to your account

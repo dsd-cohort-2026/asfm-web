@@ -1,4 +1,3 @@
-
 import SignInForm from '@/components/SignInForm';
 import { createFileRoute } from '@tanstack/react-router';
 
@@ -7,7 +6,5 @@ export const Route = createFileRoute('/SignIn')({
 });
 
 function RouteComponent() {
-  return (
-    <SignInForm />
-  );
+  return <SignInForm />;
 }
