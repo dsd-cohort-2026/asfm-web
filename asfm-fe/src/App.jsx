@@ -1,6 +1,5 @@
 import FilterSelect from './components/custom/FilterSelect';
 import { Button } from './components/ui/button';
-import TopNavBar from './components/NonMemberSignInNavBar';
 import { ReusableTable } from './components/table_components'
 import { mockLoanedItems } from './features/mockLoanedItems'
 import DashboardCard from './components/custom/DashboardCard'
@@ -47,7 +46,6 @@ function App() {
 
   return (
     <>
-      <TopNavBar />
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
         <div className="flex flex-col items-center justify-center gap-4">
           <Button>Default button</Button>
