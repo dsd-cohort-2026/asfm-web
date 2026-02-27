@@ -1,6 +1,7 @@
 import { Button } from './ui/button';
 import { useAuthStore } from '../hooks/useAuthStore';
 import { useNavigate, useRouter } from '@tanstack/react-router';
+import logo from '../assets/logo.png';
 
 function BasicNavBar() {
   const { isAuthenticated, login, logout } = useAuthStore();
@@ -18,9 +19,9 @@ function BasicNavBar() {
   // Debug: Log all routes
   return (
     <nav className="bg-secondary p-4 flex justify-between">
-      <div className="flex  items-center gap-4">
+      <div className="flex items-center gap-4">
         {/* Create the logo */}
-        <div className="rounded-md  text-secondary-foreground border-black px-4 py-2">Logo</div>
+        <img src={logo} alt='Company Logo' className='h-17 w-17 -m-3' loading='lazy' />
         <Button variant="outline">Home</Button>
         {/* is status it not guess add animal div */}
         <Button variant="outline">All Users</Button>
