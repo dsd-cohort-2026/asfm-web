@@ -7,6 +7,8 @@ import DashboardCard from './components/custom/DashboardCard';
 import { ModalDialog } from './components/ModalDialog';
 import ConfirmationDialog from './components/confirmationDialog';
 import { useState } from 'react';
+import { DashboardSummaryCard } from './components/summaryCard';
+import { PawPrint } from 'lucide-react';
 
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
@@ -90,6 +92,15 @@ function App() {
             onClose={() => setShowConfirmation(false)}
           />
         )}
+      </div>
+      <div className="flex justify-center">Dashboard Summary Card</div>
+      <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-5">
+          <DashboardSummaryCard title="Total Animals" value="150" subtitle="10 new this week" icon={<PawPrint/>}/>
+          <DashboardSummaryCard title="Total Fosters" value="75" subtitle="5 new this week" icon={<PawPrint/>}/>
+          <DashboardSummaryCard title="Adoptions This Month" value="20" subtitle="2 pending adoptions" icon={<PawPrint/>}/>
+          <DashboardSummaryCard title="Available Volunteers" value="30" subtitle="3 new this month"icon={<PawPrint/>} />
+        </div>
       </div>
       <div className="flex justify-center">Admin Dashboard Card</div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5">
