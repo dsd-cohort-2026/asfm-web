@@ -8,24 +8,30 @@ import {
   CardContent,
 } from "@/components/ui/card";
 
-function DashboardSummaryCard({ title, value, subtitle, icon }) {
+export function DashboardSummaryCard({ title, value, subtitle, icon, className = "" }) {
   return (
-    <Card>
-      <CardHeader className="flex items-center justify-between">
-        <div className="flex gap-2">
-          <CardTitle>{title}</CardTitle>
-          {icon && <span className="icon">{icon}</span>}
-        </div>
+    <Card className={`w-full ${className}`}>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground">
+          {title}
+        </CardTitle>
+        {icon && (
+          <span className="h-5 w-5 text-muted-foreground" aria-hidden="true">
+            {icon}
+          </span>
+        )}
       </CardHeader>
-      {subtitle && (
-        <CardContent>
-          <div className="text-2xl font-semibold py-2">{value}</div>
-          <CardDescription>{subtitle}</CardDescription>
-        </CardContent>
-      )}
+
+      <CardContent>
+        <div className="text-2xl font-bold tracking-tight">
+          {value ?? "—"}
+        </div>
+        {subtitle && (
+          <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>
+        )}
+      </CardContent>
     </Card>
   );
 }
-
 export default DashboardSummaryCard;
 
