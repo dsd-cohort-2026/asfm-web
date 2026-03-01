@@ -39,3 +39,18 @@ exports.createAnimal = async (req, res) => {
     res.status(400).json({ message: 'An error occurred while creating the animal' });
   }
 };
+
+exports.updateAnimalById = async (req, res) => {
+  try {
+    const updatedAnimal = await animalService.updateAnimalById(req);
+    if (!updatedAnimal) {
+      return res
+        .status(400)
+        .json({ message: 'Oh no! An error occurred while adding the new animal!' });
+    }
+    res.status(201).json(updatedAnimal);
+  } catch (error) {
+    console.error(`There was an error while creating the animal:`, error);
+    res.status(400).json({ message: 'An error occurred while creating the animal' });
+  }
+};
