@@ -7,6 +7,7 @@ import DashboardCard from './components/custom/DashboardCard';
 import { ModalDialog } from './components/ModalDialog';
 import ConfirmationDialog from './components/confirmationDialog';
 import { useState } from 'react';
+import { DatePickerSimple } from './components/dateTimePicker';
 
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
@@ -59,6 +60,7 @@ function App() {
           selectTriggerClassName="w-[300px]"
           selectItems={['approved', 'pending', 'denied']}
         />
+        <DatePickerSimple />
         <ModalDialog
           trigger={<Button>Open Modal</Button>}
           title={'Title'}
