@@ -1,3 +1,6 @@
+const PATH = 'animals/create';
+const METHOD = 'POST';
+
 require('dotenv').config();
 
 const getStaffUserToken = async () => {
@@ -34,13 +37,13 @@ const getRegularUserToken = async () => {
 
 const runTests = async () => {
   try {
-    const staffToken = await getStaffUserToken();
-    const userToken = await getRegularUserToken();
-    const response = await fetch('http://localhost:8080/api/animals/create', {
-      method: 'POST',
+    const STAFF_TOKEN = await getStaffUserToken();
+    const USER_TOKEN = await getRegularUserToken();
+    const response = await fetch(`http://localhost:8080/api/${PATH}`, {
+      method: METHOD,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${userToken}`,
+        Authorization: `Bearer ${STAFF_TOKEN}`,
       },
       body: JSON.stringify({
         name: 'Create Animal Test',
