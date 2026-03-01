@@ -1,7 +1,7 @@
 const prisma = require('../../connections/prisma-client');
 
 exports.findAll = async () => {
-    return prisma.user.findMany();
+    return await prisma.user.findMany();
 };
 
 exports.findUnique = async (id) => {
