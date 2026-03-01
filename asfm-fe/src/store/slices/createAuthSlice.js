@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabaseClient';
 export const createAuthSlice = (set) => ({
   user: null,
   session: null,
+  // for initial session check on mount
   loading: true,
 
   setSession: (session) => {
@@ -25,6 +26,7 @@ export const createAuthSlice = (set) => ({
       return error;
     }
 
+    // state is handled in AuthProvider though listener
     return null;
   },
 
@@ -38,6 +40,7 @@ export const createAuthSlice = (set) => ({
       return error;
     }
 
+    // state is handled in AuthProvider though listener
     return null;
   },
 });
