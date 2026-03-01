@@ -1,32 +1,28 @@
 import FilterSelect from './components/custom/FilterSelect';
 import { Button } from './components/ui/button';
 import TopNavBar from './components/NonMemberSignInNavBar';
-import {ReusableTable} from './components/table_components'
-import {mockLoanedItems} from './features/mockLoanedItems'
-import DashboardCard from './components/custom/DashboardCard'
-import DashboardSummaryCard from './components/summaryCard';
+import { ReusableTable } from './components/table_components';
+import { mockLoanedItems } from './features/mockLoanedItems';
+import DashboardCard from './components/custom/DashboardCard';
 import { ModalDialog } from './components/ModalDialog';
-import {  PawPrintIcon } from 'lucide-react';
+import ConfirmationDialog from './components/confirmationDialog';
 import { useState } from 'react';
 
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
- const loanedItemsColumns = [
+  const loanedItemsColumns = [
     {
-      accessorKey: "itemDescription",
-      header: "Item Description",
-      textSize: "md",
-      headClassName: "min-w-[160px]",
+      accessorKey: 'itemDescription',
+      header: 'Item Description',
     },
     {
-      accessorKey: "userId",
-      header: "User ID",
-      textSize: "sm",
-      headClassName: "w-[120px] text-center",
-      cellClassName: "text-center",
+      accessorKey: 'userId',
+      header: 'User ID',
+      textSize: 'sm',
+      headClassName: 'w-[120px] text-center',
+      cellClassName: 'text-center',
     },
-  ]
-
+  ];
 
   // For modal example
   const [loading, setLoading] = useState(false);
@@ -39,9 +35,16 @@ function App() {
     }, 2000);
   };
 
+  // For confirmation dialog example
+  const [dialogConfig, setDialogConfig] = useState({});
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const openDialog = (type, primaryText, secondaryText, button = 'Done') => {
+    setDialogConfig({ type, primaryText, secondaryText, button });
+    setShowConfirmation(true);
+  };
+
   return (
     <>
-      <TopNavBar />
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
         <div className="flex flex-col items-center justify-center gap-4">
           <Button>Default button</Button>
@@ -75,30 +78,44 @@ function App() {
             <input type="text" className="border" />
           </form>
         </ModalDialog>
-      </div>
-      <div className="flex justify-center mt-8">Admin Dashboard Summary</div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5">
-          <DashboardSummaryCard
-            title="Active Loans"
-            value={42}
-            subtitle="Last 24 hours"
-            icon={<PawPrintIcon className="w-4 h-4" />}
+        <Button variant="secondary" onClick={() => openDialog('success', 'Success', 'Item has been added to inventory.')}>
+          Open Success
+        </Button>
+        <Button variant="destructive" onClick={() => openDialog('error', 'Failed', 'Could not add item to inventory.')}>
+          Open Error
+        </Button>
+        {showConfirmation && (
+          <ConfirmationDialog
+            {...dialogConfig}
+            onClose={() => setShowConfirmation(false)}
           />
-          <DashboardSummaryCard
-            title="Overdue Items"
-            value={5}
-            subtitle="Requires attention"
-          />
+        )}
       </div>
-      <div className='flex justify-center'>Admin Dashboard Card</div>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 px-5'>
-        <DashboardCard title={"Testing Title"} navLink={"admin-portal"} itemsArray={[{name: 'Chewy', species: 'dog', sex: 'male', dob: '09/15/16'}, {name: 'Bailey', species: 'dog', sex: 'female', dob: '12/26/19'}]}/>
-        <DashboardCard title={"Testing Title 2"} navLink={"admin-portal"} itemsArray={[{name: 'Chewy', species: 'dog', sex: 'male', dob: '09/15/16'}, {name: 'Bailey', species: 'dog', sex: 'female', dob: '12/26/19'}]}/>
+      <div className="flex justify-center">Admin Dashboard Card</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5">
+        <DashboardCard
+          title={'Testing Title'}
+          navLink={'admin-portal'}
+          itemsArray={[
+            { name: 'Chewy', species: 'dog', sex: 'male', dob: '09/15/16' },
+            { name: 'Bailey', species: 'dog', sex: 'female', dob: '12/26/19' },
+          ]}
+        />
+        <DashboardCard
+          title={'Testing Title 2'}
+          navLink={'admin-portal'}
+          itemsArray={[
+            { name: 'Chewy', species: 'dog', sex: 'male', dob: '09/15/16' },
+            { name: 'Bailey', species: 'dog', sex: 'female', dob: '12/26/19' },
+          ]}
+        />
       </div>
-      <ReusableTable columns={loanedItemsColumns} data={mockLoanedItems} 
-        headerClassName="bg-secondary text-primary-foreground" 
-        tablebodyRowClassName="bg-white hover:bg-secondary/20" 
-        containerClassName='overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm relative w-full px-4 lg:px-8'
+      <ReusableTable
+        columns={loanedItemsColumns}
+        data={mockLoanedItems}
+        headerClassName="bg-secondary text-primary-foreground"
+        tablebodyRowClassName="bg-white hover:bg-secondary/20"
+        containerClassName="overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm relative w-full"
       />
     </>
   );
