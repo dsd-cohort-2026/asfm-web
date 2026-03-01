@@ -5,7 +5,7 @@ import SearchBar from '@/components/SearchBar'
 
 export const Route = createFileRoute('/medical-logs')({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   return (
