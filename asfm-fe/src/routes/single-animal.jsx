@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import SingleAnimalPage from '@/pages/singleAnimal/SingleAnimalPage'
+import SingleAnimalPage from '@/pages/SingleAnimalPage'
 import BasicNavBar from '@/components/basicNavBar'
 
 export const Route = createFileRoute('/single-animal')({

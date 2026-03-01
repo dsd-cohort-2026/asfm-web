@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardDescription } from '@/components/ui/card';
+import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AnimalInputGroup from './AnimalInputGroup';
+import AnimalInputGroup from '../components/single-animal/AnimalInputGroup';
 import getBirthdayYear from '@/utils/getBirthday';
 import { useEffect } from 'react';
+import MedicalLogCard from '@/components/single-animal/MedicalLogCard';
+import { AnimalGeneralInfo } from '@/components/single-animal/AnimalGeneralInfo';
 
 export default function SingleAnimalPage() {
   // state to be replaced with global state and actions once ready
@@ -52,8 +54,14 @@ export default function SingleAnimalPage() {
           {isEditing ? (
             <AnimalEditForm isEditing={isEditing} viewAnimal={viewAnimal} />
           ) : (
-            <AnimalView viewAnimal={viewAnimal} />
+            <AnimalGeneralInfo viewAnimal={viewAnimal} />
           )}
+          <Card className="mt-10">
+            <CardTitle className="pl-5">Medical Logs</CardTitle>
+            <CardDescription className="px-5 flex flex-col gap-y-5">
+              <MedicalLogCard />
+            </CardDescription>
+          </Card>
         </article>
       </div>
     </>
@@ -117,74 +125,6 @@ export function AnimalEditForm({ isEditing, viewAnimal }) {
           </CardDescription>
         </Card>
         <Card></Card>
-      </div>
-    </>
-  );
-}
-
-export function AnimalView({ isEditing, viewAnimal }) {
-  return (
-    <>
-      <h1>This is Regular View</h1>
-      <div className="pt-10 grid grid-cols-[60%_40%] gap-x-5">
-        <Card className={'p-4'}>
-          <CardDescription>
-            <div className="grid md:grid-cols-3 gap-x-4 gap-y-6">
-              <AnimalInputGroup
-                isEditing={isEditing}
-                viewAnimal={viewAnimal}
-                htmlForLabel="name"
-                labelTitle="Name"
-                prop="name"
-              />
-
-              <AnimalInputGroup
-                isEditing={isEditing}
-                viewAnimal={viewAnimal}
-                htmlForLabel="sex"
-                labelTitle="Sex"
-                prop="sex"
-              />
-              <AnimalInputGroup
-                isEditing={isEditing}
-                viewAnimal={viewAnimal}
-                htmlForLabel="species"
-                labelTitle="Species"
-                prop="species"
-              />
-              <AnimalInputGroup
-                isEditing={isEditing}
-                viewAnimal={viewAnimal}
-                htmlForLabel="age"
-                labelTitle="Age"
-                prop="age"
-                unit="yrs"
-              />
-              <AnimalInputGroup
-                isEditing={isEditing}
-                viewAnimal={viewAnimal}
-                htmlForLabel="weight"
-                labelTitle="weight"
-                prop="weight"
-                unit="lbs"
-              />
-              <AnimalInputGroup
-                isEditing={isEditing}
-                viewAnimal={viewAnimal}
-                htmlForLabel="fixed-status"
-                labelTitle="Fixed Status"
-                prop="altered"
-              />
-            </div>
-          </CardDescription>
-        </Card>
-        <Card className="p-0">
-            <div className="relative w-full h-full max-h-[250px] bg-cover bg-center bg-[url(https://phillypaws.org/wp-content/uploads/2025/03/54324037913_4b1fe29a33_c.jpg)]  rounded-xl"
->
-            <div className='absolute backdrop-blur-sm inset-0 rounded-xl'></div>
-            <img src="https://phillypaws.org/wp-content/uploads/2025/03/54324037913_4b1fe29a33_c.jpg" className='absolute w-full h-full object-cover max-w-[200px] blur-none top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2' />
-            </div>
-        </Card>
       </div>
     </>
   );

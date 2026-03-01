@@ -55,11 +55,6 @@ function App() {
           <div className='text-center'>Global State Test</div>
           <div>
             <div className='flex flex-col items-center'>
-            {userAnimals.map((animal, index) => (
-              <span key={index} className="pr-2">
-                {animal.name}
-              </span>
-            ))}
             </div>
             <Button className="mt-2" onClick={() => addUserAnimal({ name: 'Chewy' })}>Update state and add dog to the list</Button>
           </div>
