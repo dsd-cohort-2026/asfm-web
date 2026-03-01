@@ -7,6 +7,7 @@ import DashboardCard from './components/custom/DashboardCard';
 import { ModalDialog } from './components/ModalDialog';
 import ConfirmationDialog from './components/confirmationDialog';
 import { useState } from 'react';
+import { useBoundStore } from './store';
 
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
@@ -46,6 +47,19 @@ function App() {
   return (
     <>
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
+        <div>
+          <div className='text-center'>Global State Test</div>
+          <div>
+            <div className='flex flex-col items-center'>
+            {userAnimals.map((animal, index) => (
+              <span key={index} className="pr-2">
+                {animal.name}
+              </span>
+            ))}
+            </div>
+            <Button className="mt-2" onClick={() => addUserAnimal({ name: 'Chewy' })}>Update state and add dog to the list</Button>
+          </div>
+        </div>
         <div className="flex flex-col items-center justify-center gap-4">
           <Button>Default button</Button>
           <Button disabled>Disabled button</Button>
@@ -78,17 +92,20 @@ function App() {
             <input type="text" className="border" />
           </form>
         </ModalDialog>
-        <Button variant="secondary" onClick={() => openDialog('success', 'Success', 'Item has been added to inventory.')}>
+        <Button
+          variant="secondary"
+          onClick={() => openDialog('success', 'Success', 'Item has been added to inventory.')}
+        >
           Open Success
         </Button>
-        <Button variant="destructive" onClick={() => openDialog('error', 'Failed', 'Could not add item to inventory.')}>
+        <Button
+          variant="destructive"
+          onClick={() => openDialog('error', 'Failed', 'Could not add item to inventory.')}
+        >
           Open Error
         </Button>
         {showConfirmation && (
-          <ConfirmationDialog
-            {...dialogConfig}
-            onClose={() => setShowConfirmation(false)}
-          />
+          <ConfirmationDialog {...dialogConfig} onClose={() => setShowConfirmation(false)} />
         )}
       </div>
       <div className="flex justify-center">Admin Dashboard Card</div>
