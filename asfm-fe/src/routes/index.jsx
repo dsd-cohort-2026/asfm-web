@@ -6,7 +6,7 @@ import Layout from '@/components/Layout';
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   return (
