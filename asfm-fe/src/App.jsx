@@ -5,10 +5,12 @@ import { ReusableTable } from './components/table_components';
 import { mockLoanedItems } from './features/mockLoanedItems';
 import DashboardCard from './components/custom/DashboardCard';
 import { ModalDialog } from './components/ModalDialog';
+import ConfirmationDialog from './components/confirmationDialog';
 import { useState } from 'react';
 
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
+  const loanedItemsColumns = [
   const loanedItemsColumns = [
     {
       accessorKey: 'itemDescription',
@@ -34,9 +36,16 @@ function App() {
     }, 2000);
   };
 
+  // For confirmation dialog example
+  const [dialogConfig, setDialogConfig] = useState({});
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const openDialog = (type, primaryText, secondaryText, button = 'Done') => {
+    setDialogConfig({ type, primaryText, secondaryText, button });
+    setShowConfirmation(true);
+  };
+
   return (
     <>
-      <TopNavBar />
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
         <div className="flex flex-col items-center justify-center gap-4">
           <Button>Default button</Button>
@@ -70,6 +79,18 @@ function App() {
             <input type="text" className="border" />
           </form>
         </ModalDialog>
+        <Button variant="secondary" onClick={() => openDialog('success', 'Success', 'Item has been added to inventory.')}>
+          Open Success
+        </Button>
+        <Button variant="destructive" onClick={() => openDialog('error', 'Failed', 'Could not add item to inventory.')}>
+          Open Error
+        </Button>
+        {showConfirmation && (
+          <ConfirmationDialog
+            {...dialogConfig}
+            onClose={() => setShowConfirmation(false)}
+          />
+        )}
       </div>
       <div className="flex justify-center">Admin Dashboard Card</div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5">

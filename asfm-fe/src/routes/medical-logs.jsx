@@ -1,6 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router';
-import BasicNavBar from '@/components/basicNavBar';
-import SearchBar from '@/components/SearchBar';
+import { createFileRoute } from '@tanstack/react-router'
+import Layout from '@/components/Layout';
+import BasicNavBar from '@/components/basicNavBar'
+import SearchBar from '@/components/SearchBar'
 
 export const Route = createFileRoute('/medical-logs')({
   component: RouteComponent,
@@ -8,10 +9,11 @@ export const Route = createFileRoute('/medical-logs')({
 
 function RouteComponent() {
   return (
-    <div className="flex flex-col gap-4">
-      <BasicNavBar />
-      <div className="flex justify-center">Medical History</div>
+    <Layout navBar={<BasicNavBar />}>
+      <div className='flex justify-center pt-2'>
+        Medical History
+      </div>
       <SearchBar />
-    </div>
-  );
+    </Layout>
+  )
 }
