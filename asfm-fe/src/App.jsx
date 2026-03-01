@@ -1,3 +1,5 @@
+import FilterBar from './components/FilterBar';
+import SearchBar from './components/SearchBar';
 import FilterSelect from './components/custom/FilterSelect';
 import { Button } from './components/ui/button';
 import TopNavBar from './components/NonMemberSignInNavBar';
@@ -45,8 +47,45 @@ function App() {
     setShowConfirmation(true);
   };
 
+  // For filter bar
+  const [filters, setFilters] = useState({
+    status: '',
+    search: ''
+  });
+  const handleFilter = () => {
+    console.log("Filters applied -->", filters);
+  };
+
+  const handleAddNew = () => {
+    console.log("Add new button was clicked");
+  };
+
+  const handleClearFilters = () => {
+    setFilters({ status: '', search: '' });
+    console.log("Filters have been cleared");
+  };
+
   return (
     <>
+      <FilterBar
+        onFilter={handleFilter}
+        onClear={handleClearFilters}
+        onAddNew={handleAddNew}
+        addNewButtonLabel="Button text here"
+      >
+        <FilterSelect
+          value={filters.status}
+          onChange={(val) => setFilters({ ...filters, status: val })}
+          selectTriggerClassName="w-[300px]"
+          selectItems={['approved', 'pending', 'denied']}
+        />
+        <SearchBar
+          value={filters.search}
+          onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+          placeholder="Value to Match"
+        />
+
+      </FilterBar>
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
         <div>
           <div className='text-center'>Global State Test</div>
@@ -70,10 +109,7 @@ function App() {
           <Button variant="ghost">Ghost button</Button>
           <Button variant="link">Link button</Button>
         </div>
-        <FilterSelect
-          selectTriggerClassName="w-[300px]"
-          selectItems={['approved', 'pending', 'denied']}
-        />
+
         <ModalDialog
           trigger={<Button>Open Modal</Button>}
           title={'Title'}

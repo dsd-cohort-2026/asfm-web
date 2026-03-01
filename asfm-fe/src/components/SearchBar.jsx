@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+import InputGroupForSearch from "./InputGroupForSearch";
+import { InputGroup, InputGroupInput, InputGroupAddon } from "./ui/input-group";
+import {
+  SearchIcon,
+} from "lucide-react"
+
+function SearchBar({ value = '', onChange, placeholder = "Search by ..." }) {
+  return (
+    <div className="flex flex-row rounded-md">
+      <InputGroupForSearch
+        placeholder_text={placeholder}
+        add_search_icon={true}
+        value={value}
+        onChange={onChange}
+      />
+    </div>
+  )
+}
+
+=======
 import InputGroupForSearch from './InputGroupForSearch';
 import { InputGroup, InputGroupInput, InputGroupAddon } from './ui/input-group';
 import { SearchIcon } from 'lucide-react';
@@ -8,4 +29,5 @@ function SearchBar() {
     </div>
   );
 }
+>>>>>>> 6d7c57cc359762adde2507787215e6d67f689f4d
 export default SearchBar;
