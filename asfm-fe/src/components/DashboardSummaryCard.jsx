@@ -1,24 +1,35 @@
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
+import React from "react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
 
-function DashboardSummaryCard({ title, value, subtitle, icon }) {
+export function DashboardSummaryCard({ title, value="-", subtitle="Could not load Data", icon, className = "" }) {
   return (
-    <Card>
-      <CardHeader className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {icon && <span className="icon">{icon}</span>}
-          <CardTitle>{title}</CardTitle>
-        </div>
-        <div className="text-2xl font-semibold">{value}</div>
+    <Card className={`w-full ${className}`}>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground">
+          {title}
+        </CardTitle>
+        {icon && (
+          <span className="h-5 w-5 text-muted-foreground" aria-hidden="true">
+            {icon}
+          </span>
+        )}
       </CardHeader>
 
-      {subtitle && (
-        <CardContent>
-          <CardDescription>{subtitle}</CardDescription>
-        </CardContent>
-      )}
+      <CardContent>
+        <div className="text-2xl font-bold tracking-tight">
+          {value ?? "—"}
+        </div>
+        {subtitle && (
+          <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>
+        )}
+      </CardContent>
     </Card>
   );
 }
-
 export default DashboardSummaryCard;
