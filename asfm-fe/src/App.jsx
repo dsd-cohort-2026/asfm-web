@@ -11,16 +11,10 @@ import { useBoundStore } from './store';
 
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
-
-  const userAnimals = useBoundStore((state) => state.userAnimals);
-  const addUserAnimal = useBoundStore((state) => state.addUserAnimal);
-
   const loanedItemsColumns = [
     {
       accessorKey: 'itemDescription',
       header: 'Item Description',
-      textSize: 'md',
-      headClassName: 'min-w-[160px]',
     },
     {
       accessorKey: 'userId',
@@ -52,7 +46,6 @@ function App() {
 
   return (
     <>
-      <TopNavBar />
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
         <div>
           <div className='text-center'>Global State Test</div>
@@ -139,7 +132,7 @@ function App() {
         data={mockLoanedItems}
         headerClassName="bg-secondary text-primary-foreground"
         tablebodyRowClassName="bg-white hover:bg-secondary/20"
-        containerClassName="overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm relative w-full px-4 lg:px-8"
+        containerClassName="overflow-auto max-h-150 rounded-lg border border-pale-sky shadow-sm relative w-full"
       />
     </>
   );
