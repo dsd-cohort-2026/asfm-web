@@ -67,7 +67,7 @@ exports.createAnimal = async (body) => {
   }
 };
 
-exports.updateAnimalById = async (body) => {
+exports.updateAnimalById = async (req) => {
   try {
     const body = req.body;
     const id = req.params.id;

@@ -7,7 +7,7 @@ const updateAnimalById = require('../../validators/animals/updateAnimalById.vali
 
 router.get('/', animalController.getAllAnimals);
 router.get('/:id', animalController.getAnimalById);
-router.post('/create', validate(createAnimalSchema), animalController.createAnimal);
+router.post('/create', staffAuthCheck, validate(createAnimalSchema), animalController.createAnimal);
 router.patch('/:id', staffAuthCheck, validate(updateAnimalById), animalController.updateAnimalById);
 
 module.exports = router;

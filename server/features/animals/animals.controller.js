@@ -44,13 +44,11 @@ exports.updateAnimalById = async (req, res) => {
   try {
     const updatedAnimal = await animalService.updateAnimalById(req);
     if (!updatedAnimal) {
-      return res
-        .status(400)
-        .json({ message: 'Oh no! An error occurred while adding the new animal!' });
+      return res.status(400).json({ message: 'Oh no! An error occurred while updating animal!' });
     }
     res.status(201).json(updatedAnimal);
   } catch (error) {
-    console.error(`There was an error while creating the animal:`, error);
-    res.status(400).json({ message: 'An error occurred while creating the animal' });
+    console.error(`There was an error while updating the animal:`, error);
+    res.status(400).json({ message: 'An error occurred while updating the animal' });
   }
 };
