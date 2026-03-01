@@ -97,7 +97,7 @@ function App() {
       </div>
       <div className="flex justify-center">Dashboard Summary Card</div>
       <div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-full gap-5 px-5">
             {DASHBOARD_CARD_CONFIG.map((card) => {
               const Icon = card.icon;
               return (
