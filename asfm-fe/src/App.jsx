@@ -11,7 +11,6 @@ import { useState } from 'react';
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
   const loanedItemsColumns = [
-  const loanedItemsColumns = [
     {
       accessorKey: 'itemDescription',
       header: 'Item Description',
