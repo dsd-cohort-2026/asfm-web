@@ -8,8 +8,8 @@ import { ModalDialog } from './components/ModalDialog';
 import ConfirmationDialog from './components/confirmationDialog';
 import { useState } from 'react';
 import { DashboardSummaryCard } from './components/DashboardSummaryCard';
-import { PawPrint } from 'lucide-react';
 import { DASHBOARD_CARD_CONFIG } from "./config/dashboardCard";
+import { useDashboardSummary } from './hooks/useDashboardSummary';
 
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
@@ -26,7 +26,8 @@ function App() {
       cellClassName: 'text-center',
     },
   ];
-
+  // For dashboard summary card example
+  const { data, isloading } = useDashboardSummary();
   // For modal example
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -103,7 +104,7 @@ function App() {
                 <DashboardSummaryCard
                   key={card.id}
                   title={card.title}
-                  value="-"
+                  value={isloading ? 'Loading...' : data ? data[card.dataKey] : 'N/A'}
                   subtitle={card.subtitle}
                   icon={<Icon className="h-5 w-5" />}
                 />
