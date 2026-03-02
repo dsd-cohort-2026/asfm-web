@@ -113,6 +113,7 @@ const runTests = async () => {
         start_date: '2026-02-12',
         end_date: '2026-12-12',
         status: 'ACTIVE',
+        new_animal_status: 'FOSTERED',
         foster_user: regularUser.id,
         assigned_by_staff: staffUser.id,
       }),

@@ -5,6 +5,7 @@ const assignAnimalSchema = z.object({
     start_date: z.coerce.date().optional(),
     end_date: z.coerce.date().optional(),
     status: z.enum(['ACTIVE', 'COMPLETE']),
+    new_animal_status: z.enum(['ADOPTED', 'FOSTERED']),
     foster_user: z.uuid(),
     assigned_by_staff: z.uuid(),
   }),
