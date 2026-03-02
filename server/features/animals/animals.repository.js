@@ -90,7 +90,10 @@ exports.assignAnimal = async (idBodyAndRelations) => {
     const result = await prisma.$transaction(async (tx) => {
       const updatedAnimal = await tx.animal.update({
         where: { id: relations.animal },
-        data: { foster_status: newStatus },
+        data: {
+          foster_status: newStatus,
+          modified_by: { create: { staff_user_id: relations.assigned_by_staff } },
+        },
       });
       const animalAssignment = await tx.animalAssignment.create({
         data: {
