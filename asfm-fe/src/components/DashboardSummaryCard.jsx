@@ -9,12 +9,12 @@ import {
 import { cn } from "@/lib/utils";
 
 export function DashboardSummaryCard({ title, value="-", subtitle="Could not load Data", icon, 
-  carrdClassName = "", 
+  cardClassName = "",
   cardHeaderClassName = "",
   cardTitleClassName = "",
  }) {
   return (
-    <Card className= {cn("w-full", carrdClassName)}>
+    <Card className={cn("w-full", cardClassName)}>
       <CardHeader className={cn("flex flex-row items-center justify-between space-y-0 pb-2" , cardHeaderClassName)}>
         <CardTitle className={cn("text-sm font-medium text-muted-foreground", cardTitleClassName)}>
           {title}
