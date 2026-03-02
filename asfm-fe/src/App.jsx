@@ -45,7 +45,9 @@ function App() {
     setDialogConfig({ type, primaryText, secondaryText, button });
     setShowConfirmation(true);
   };
-
+  const userAnimals = useBoundStore((state) => state.userAnimals);
+  const addUserAnimal = useBoundStore((state) => state.addUserAnimal);
+  
   return (
     <>
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
