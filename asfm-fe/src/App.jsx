@@ -10,6 +10,9 @@ import { useState } from 'react';
 import { DashboardSummaryCard } from './components/DashboardSummaryCard';
 import { DASHBOARD_CARD_CONFIG } from "./config/dashboardCard";
 import { useDashboardSummary } from './hooks/useDashboardSummary';
+import CustomBadge from './components/custom/CustomBadge';
+import { useBoundStore } from './store';
+import { DatePickerSimple } from './components/dateTimePicker';
 
 function App() {
   // src/features/loaned-items/loanedItemsColumns.js
@@ -46,7 +49,9 @@ function App() {
     setDialogConfig({ type, primaryText, secondaryText, button });
     setShowConfirmation(true);
   };
-
+  const userAnimals = useBoundStore((state) => state.userAnimals);
+  const addUserAnimal = useBoundStore((state) => state.addUserAnimal);
+  
   return (
     <>
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
@@ -63,6 +68,7 @@ function App() {
           selectTriggerClassName="w-[300px]"
           selectItems={['approved', 'pending', 'denied']}
         />
+        <DatePickerSimple />
         <ModalDialog
           trigger={<Button>Open Modal</Button>}
           title={'Title'}

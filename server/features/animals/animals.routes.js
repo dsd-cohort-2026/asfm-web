@@ -6,6 +6,6 @@ const createAnimalSchema = require('../../validators/animals/createAnimal.valida
 
 router.get('/', animalController.getAllAnimals);
 router.get('/:id', animalController.getAnimalById);
-router.post('/create', validate(createAnimalSchema), animalController.createAnimal);
+router.post('/create', staffAuthCheck, validate(createAnimalSchema), animalController.createAnimal);
 
 module.exports = router;
