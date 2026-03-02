@@ -86,16 +86,24 @@ exports.createAnimal = async (body) => {
 
 exports.assignAnimal = async (idBodyAndRelations) => {
   try {
-    const { body, relations } = idBodyAndRelations;
-    const animalAssignment = await prisma.animalAssignment.create({
-      data: {
-        ...body,
-        animal: { connect: { id: relations.animal } },
-        foster_user: { connect: { id: relations.foster_user } },
-        assigned_by_staff: { connect: { id: relations.assigned_by_staff } },
-      },
+    const { body, relations, newStatus } = idBodyAndRelations;
+    const result = await prisma.$transaction(async (tx) => {
+      const updatedAnimal = await tx.animal.update({
+        where: { id: relations.animal },
+        data: { foster_status: newStatus },
+      });
+      const animalAssignment = await tx.animalAssignment.create({
+        data: {
+          ...body,
+          animal: { connect: { id: relations.animal } },
+          foster_user: { connect: { id: relations.foster_user } },
+          assigned_by_staff: { connect: { id: relations.assigned_by_staff } },
+        },
+        include: { animal: true },
+      });
+      return animalAssignment;
     });
-    return animalAssignment;
+    return result;
   } catch (err) {
     console.log(err);
     throw err;

@@ -72,9 +72,12 @@ exports.assignAnimal = async (req) => {
     const body = req.body;
     const parsedBody = {};
     const relations = {};
+    const newStatus = body.new_animal_status;
     for (const [prop, val] of Object.entries(body)) {
       if (prop === 'foster_user' || prop === 'assigned_by_staff') {
         relations[prop] = val;
+      } else if (prop === 'new_animal_status') {
+        continue;
       } else parsedBody[prop] = prop === 'end_date' ? new Date(val) : val;
     }
     parsedBody.created_at = new Date();
@@ -83,6 +86,7 @@ exports.assignAnimal = async (req) => {
     const animalAssignment = await animalRepository.assignAnimal({
       body: parsedBody,
       relations,
+      newStatus,
     });
     return animalAssignment;
   } catch (err) {
