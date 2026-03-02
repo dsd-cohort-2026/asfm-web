@@ -30,7 +30,7 @@ export const createAuthSlice = (set, get) => ({
   },
 
   clearSession: () => {
-    set({ session: null, user: null });
+    set({ session: null, user: null, userRole: null });
   },
 
   setLoading: (isLoading) => set({ loading: isLoading }),
