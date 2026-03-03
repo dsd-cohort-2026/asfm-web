@@ -1,11 +1,10 @@
-import { Card, CardDescription, CardTitle } from '@/components/ui/card';
+import { Card, CardDescription } from '@/components/ui/card';
 import AnimalInputGroup from './AnimalInputGroup';
 
 export function AnimalGeneralInfo({ isEditing, viewAnimal }) {
     return (
       <>
-        <h1>This is Regular View</h1>
-        <div className="pt-10 grid grid-cols-[60%_1fr] gap-x-5">
+        <div className="pt-10 grid md:grid-cols-[60%_1fr] gap-x-5">
           <Card className={'p-4'}>
             <CardDescription>
               <div className="grid md:grid-cols-3 gap-x-4 gap-y-10">
@@ -57,7 +56,7 @@ export function AnimalGeneralInfo({ isEditing, viewAnimal }) {
               </div>
             </CardDescription>
           </Card>
-          <Card className="p-0 w-full ">
+          <Card className="mt-5 md:mt-0 p-0 w-full h-[250px] md:h-full">
             <div className={`relative w-full h-full bg-cover bg-center rounded-xl`} style={{ backgroundImage: `url(${viewAnimal.picture})` }}>
               <div className="absolute backdrop-blur-sm inset-0 rounded-xl"></div>
               <img

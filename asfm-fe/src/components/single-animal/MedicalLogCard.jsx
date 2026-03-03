@@ -18,7 +18,6 @@ export default function MedicalLogCard({log}) {
         if (data.length === 0) {
             return null
         }
-        console.log(data[0])
         setMedication(data[0])
         return data[0]
     }
@@ -61,7 +60,7 @@ export default function MedicalLogCard({log}) {
                   {item ?
                     <span className='block pt-2'>{item.name} {log.dose && `- Dosage: ${log.dose} dose`} {log.prescription && `- Prescription: ${log.prescription}`} {medication && `- Administration Route: ${medication.administration_route}`}</span>
                     :
-                    <span> None</span>
+                    <span className='block pt-2'> None</span>
                 }
                 </div>
               </div>

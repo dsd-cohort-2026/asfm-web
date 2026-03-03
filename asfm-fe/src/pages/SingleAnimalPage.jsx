@@ -8,7 +8,7 @@ import { AnimalGeneralInfo } from '@/components/single-animal/AnimalGeneralInfo'
 
 export default function SingleAnimalPage() {
   // state to be replaced with global state and actions once ready
-  const [isStaff, setIsStaff] = useState(true);
+  const [isStaff, setIsStaff] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [viewAnimal, setViewAnimal] = useState('');
   const [animalLogs, setAnimalLogs] = useState([]);
@@ -22,8 +22,15 @@ export default function SingleAnimalPage() {
         throw new Error(`Fetch request error status: ${response.status}`);
       }
       const data = await response.json();
+      const animal = data[0];
 
-      setViewAnimal(data[0]);
+      const updatedAnimal = {
+        ...animal,
+        age: animal.dob ? getBirthdayYear(animal.dob) : null,
+        altered: animal.altered ? 'Fixed' : 'Not Fixed',
+      };
+
+      setViewAnimal(updatedAnimal);
       return data[0];
     } catch (err) {
       console.error('Failed to fetch animal', err);
@@ -54,13 +61,6 @@ export default function SingleAnimalPage() {
 
   useEffect(() => {
     fetchAllAnimalRecords('550e8400-e29b-41d4-a716-446655550001');
-
-    // if (viewAnimal.dob) {
-    //   setViewAnimal({
-    //     ...viewAnimal,
-    //     age: getBirthdayYear(viewAnimal.dob),
-    //   });
-    // }
   }, []);
 
   return (
@@ -82,9 +82,8 @@ export default function SingleAnimalPage() {
           <Card className="mt-10">
             <CardTitle className="pl-5">Medical Logs</CardTitle>
             <CardDescription className="px-5 flex flex-col gap-y-5">
-              {animalLogs.map((log, index) => (
-                <MedicalLogCard key={index} log={log} />
-              ))}
+              {animalLogs &&
+                animalLogs.map((log, index) => <MedicalLogCard key={index} log={log} />)}
             </CardDescription>
           </Card>
         </article>
