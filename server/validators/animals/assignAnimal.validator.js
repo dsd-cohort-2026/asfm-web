@@ -1,7 +1,7 @@
 const { z } = require('zod');
 
 const assignAnimalSchema = z.object({
-  body: z.object({
+  body: z.strictObject({
     start_date: z.coerce.date().optional(),
     end_date: z.coerce.date().optional(),
     status: z.enum(['ACTIVE', 'COMPLETE']),
