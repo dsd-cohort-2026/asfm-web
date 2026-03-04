@@ -4,6 +4,7 @@ const staffAuthCheck = require('../../middleware/auth-staff');
 const validate = require('../../middleware/validator');
 const createAnimalSchema = require('../../validators/animals/createAnimal.validator');
 const assignAnimalSchema = require('../../validators/animals/assignAnimal.validator');
+const updateAnimalById = require('../../validators/animals/updateAnimalById.validator');
 
 router.get('/', animalController.getAllAnimals);
 router.get('/:id', animalController.getAnimalById);
@@ -14,5 +15,6 @@ router.patch(
   validate(assignAnimalSchema),
   animalController.assignAnimal,
 );
+router.patch('/:id', staffAuthCheck, validate(updateAnimalById), animalController.updateAnimalById);
 
 module.exports = router;
