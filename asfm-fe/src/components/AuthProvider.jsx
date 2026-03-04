@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // automatically update session state
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
         setSession(session);
         setUserRole();
