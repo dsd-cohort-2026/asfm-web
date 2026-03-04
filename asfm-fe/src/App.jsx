@@ -77,7 +77,7 @@ function App() {
           selectTriggerClassName="w-[300px]"
           selectItems={['approved', 'pending', 'denied']}
         />
-        <DatePickerSimple />
+        <DatePickerSimple className="w-44"/>
         <ModalDialog
           trigger={<Button>Open Modal</Button>}
           title={'Title'}
