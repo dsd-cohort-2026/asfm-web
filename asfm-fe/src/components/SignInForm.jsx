@@ -5,10 +5,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useForm } from '@tanstack/react-form';
 import { useBoundStore } from '@/store';
 import { useState } from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import { Route } from '@/routes/SignIn';
 
 function SignInForm() {
+  const navigate = useNavigate();
+  const { redirect } = Route.useSearch();
   const signIn = useBoundStore((state) => state.signIn);
-  const user = useBoundStore((state) => state.user);
   const [authError, setAuthError] = useState('');
 
   const form = useForm({
@@ -24,20 +27,10 @@ function SignInForm() {
         setAuthError(error.message);
         return;
       }
+
+      navigate({ to: redirect });
     },
   });
-
-  // prevents sign in form from flashing after submit
-  if (user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="flex justify-center items-center h-screen">
