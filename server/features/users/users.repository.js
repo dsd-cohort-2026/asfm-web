@@ -6,7 +6,7 @@ exports.findAll = async () => {
 
 exports.findById = async (id) => {
   try {
-    return prisma.user.findUnique({ where: { id } });
+    return await prisma.user.findUnique({ where: { id } });
   } catch (error) {
     console.log(error);
     throw error;
