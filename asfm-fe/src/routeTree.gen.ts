@@ -74,23 +74,23 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/SignIn': typeof SignInRoute
   '/medical-logs': typeof MedicalLogsRoute
+  '/admin-portal': typeof ProtectedAdminPortalRoute
   '/animals/$animalId': typeof AnimalsAnimalIdRoute
   '/animals/add': typeof AnimalsAddRoute
   '/my-animals/$id': typeof MyAnimalsIdRoute
   '/single-animal/$id': typeof SingleAnimalIdRoute
   '/animals/': typeof AnimalsIndexRoute
-  '/admin-portal': typeof ProtectedAdminPortalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/SignIn': typeof SignInRoute
   '/medical-logs': typeof MedicalLogsRoute
+  '/admin-portal': typeof ProtectedAdminPortalRoute
   '/animals/$animalId': typeof AnimalsAnimalIdRoute
   '/animals/add': typeof AnimalsAddRoute
   '/my-animals/$id': typeof MyAnimalsIdRoute
   '/single-animal/$id': typeof SingleAnimalIdRoute
   '/animals': typeof AnimalsIndexRoute
-  '/admin-portal': typeof ProtectedAdminPortalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,19 +98,20 @@ export interface FileRoutesById {
   '/SignIn': typeof SignInRoute
   '/_protected': typeof ProtectedRouteWithChildren
   '/medical-logs': typeof MedicalLogsRoute
+  '/_protected/admin-portal': typeof ProtectedAdminPortalRoute
   '/animals/$animalId': typeof AnimalsAnimalIdRoute
   '/animals/add': typeof AnimalsAddRoute
   '/my-animals/$id': typeof MyAnimalsIdRoute
   '/single-animal/$id': typeof SingleAnimalIdRoute
   '/animals/': typeof AnimalsIndexRoute
-  '/_protected/admin-portal': typeof ProtectedAdminPortalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/SignIn'
-    | '/medical-logs' | '/admin-portal'
+    | '/medical-logs'
+    | '/admin-portal'
     | '/animals/$animalId'
     | '/animals/add'
     | '/my-animals/$id'
@@ -119,8 +120,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/admin-portal'
+    | '/SignIn'
     | '/medical-logs'
+    | '/admin-portal'
     | '/animals/$animalId'
     | '/animals/add'
     | '/my-animals/$id'
@@ -129,21 +131,15 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/admin-portal'
+    | '/SignIn'
+    | '/_protected'
     | '/medical-logs'
+    | '/_protected/admin-portal'
     | '/animals/$animalId'
     | '/animals/add'
     | '/my-animals/$id'
     | '/single-animal/$id'
     | '/animals/'
-  to: '/' | '/SignIn' | '/medical-logs' | '/admin-portal'
-  id:
-    | '__root__'
-    | '/'
-    | '/SignIn'
-    | '/_protected'
-    | '/medical-logs'
-    | '/_protected/admin-portal'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
