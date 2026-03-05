@@ -1,3 +1,5 @@
+import FilterBar from './components/FilterBar';
+import SearchBar from './components/SearchBar';
 import FilterSelect from './components/custom/FilterSelect';
 import { Button } from './components/ui/button';
 import TopNavBar from './components/NonMemberSignInNavBar';
@@ -15,7 +17,7 @@ import { useBoundStore } from './store';
 import { DatePickerSimple } from './components/dateTimePicker';
 
 function App() {
-  // src/features/loaned-items/loanedItemsColumns.js
+  // Loaned items table columns
   const loanedItemsColumns = [
     {
       accessorKey: 'itemDescription',
@@ -31,7 +33,11 @@ function App() {
   ];
   // For dashboard summary card example
   const { data, isloading } = useDashboardSummary();
-  // For modal example
+  // Zustand store - user animals
+  const userAnimals = useBoundStore((state) => state.userAnimals);
+  const addUserAnimal = useBoundStore((state) => state.addUserAnimal);
+
+  // Modal state
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const submitHandler = () => {
@@ -42,19 +48,68 @@ function App() {
     }, 2000);
   };
 
-  // For confirmation dialog example
+  // Confirmation dialog state
   const [dialogConfig, setDialogConfig] = useState({});
   const [showConfirmation, setShowConfirmation] = useState(false);
   const openDialog = (type, primaryText, secondaryText, button = 'Done') => {
     setDialogConfig({ type, primaryText, secondaryText, button });
     setShowConfirmation(true);
   };
-  const userAnimals = useBoundStore((state) => state.userAnimals);
-  const addUserAnimal = useBoundStore((state) => state.addUserAnimal);
-  
+
+  // Filter bar state
+  const [filters, setFilters] = useState({
+    status: '',
+    search: ''
+  });
+  const handleFilter = () => {
+    console.log("Filters applied -->", filters);
+  };
+
+  const handleAddNew = () => {
+    console.log("Add new button was clicked");
+  };
+
+  const handleClearFilters = () => {
+    setFilters({ status: '', search: '' });
+    console.log("Filters have been cleared");
+  };
+
   return (
     <>
+      <FilterBar
+        onFilter={handleFilter}
+        onClear={handleClearFilters}
+        onAddNew={handleAddNew}
+        addNewButtonLabel="Button text here"
+      >
+        <FilterSelect
+          value={filters.status}
+          onChange={(val) => setFilters({ ...filters, status: val })}
+          selectTriggerClassName="w-[300px]"
+          selectItems={['approved', 'pending', 'denied']}
+        />
+        <SearchBar
+          value={filters.search}
+          onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+          placeholder="Value to Match"
+        />
+      </FilterBar>
+
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
+        <div>
+          <div className='text-center'>Global State Test</div>
+          <div>
+            <div className='flex flex-col items-center'>
+              {userAnimals.map((animal, index) => (
+                <span key={index} className="pr-2">
+                  {animal.name}
+                </span>
+              ))}
+            </div>
+            <Button className="mt-2" onClick={() => addUserAnimal({ name: 'Chewy' })}>Update state and add dog to the list</Button>
+          </div>
+        </div>
+
         <div className="flex flex-col items-center justify-center gap-4">
           <Button>Default button</Button>
           <Button disabled>Disabled button</Button>
@@ -64,11 +119,13 @@ function App() {
           <Button variant="ghost">Ghost button</Button>
           <Button variant="link">Link button</Button>
         </div>
+
         <FilterSelect
           selectTriggerClassName="w-[300px]"
           selectItems={['approved', 'pending', 'denied']}
         />
         <DatePickerSimple />
+
         <ModalDialog
           trigger={<Button>Open Modal</Button>}
           title={'Title'}
@@ -88,7 +145,11 @@ function App() {
             <input type="text" className="border" />
           </form>
         </ModalDialog>
-        <Button variant="secondary" onClick={() => openDialog('success', 'Success', 'Item has been added to inventory.')}>
+
+        <Button
+          variant="secondary"
+          onClick={() => openDialog('success', 'Success', 'Item has been added to inventory.')}
+        >
           Open Success
         </Button>
         <Button variant="destructive" onClick={() => openDialog('error', 'Failed', 'Could not add item to inventory.')}>
@@ -101,6 +162,7 @@ function App() {
           />
         )}
       </div>
+
       <div className="flex justify-center">Dashboard Summary Card</div>
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-full gap-5 px-5">
@@ -137,6 +199,7 @@ function App() {
           ]}
         />
       </div>
+
       <ReusableTable
         columns={loanedItemsColumns}
         data={mockLoanedItems}
