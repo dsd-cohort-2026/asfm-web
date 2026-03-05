@@ -9,16 +9,14 @@ exports.findAll = async () => {
   }
 };
 
-exports.updateInventory = async (inventoryAndTransaction) => {
+exports.updateInventory = async ({ inventory, inventory_transactions }) => {
   try {
-    const { inventory, inventory_transactions } = inventoryAndTransaction;
+    const { id, ...inventoryData } = inventory;
     const updatedInventory = await prisma.inventory.update({
-      where: { id: inventory.id },
+      where: { id },
       data: {
-        quantity: inventory.quantity,
-        item_id: inventory.item_id,
-        expiration_date: inventory.expiration_date || null,
-        inventory_transactions,
+        ...inventoryData,
+        ...(inventory_transactions && { inventory_transactions }),
       },
       include: { inventory_transactions: true },
     });
