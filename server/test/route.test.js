@@ -70,7 +70,7 @@ const getStaffUserToken = async () => {
         'Content-Type': 'application/json',
         apikey: process.env.SUPABASE_PUBLISHABLE_KEY,
       },
-      body: JSON.stringify({ email: 'another@test.com', password: 'password123' }),
+      body: JSON.stringify({ email: 'staff@user.com', password: 'staffpassword' }),
     },
   );
   const data = await response.json();
@@ -86,7 +86,7 @@ const getRegularUserToken = async () => {
         'Content-Type': 'application/json',
         apikey: process.env.SUPABASE_PUBLISHABLE_KEY,
       },
-      body: JSON.stringify({ email: 'testing@gmail.com', password: 'password123' }),
+      body: JSON.stringify({ email: 'regular@user.com', password: 'regularpassword' }),
     },
   );
   const data = await response.json();
@@ -100,23 +100,14 @@ const runTests = async () => {
     const staffUser = await getRandomStaffUser();
     const regularUser = await getRandomRegularUser();
     const animal = await getRandomAnimal();
-    const PATH = `animals/${animal.id}/assign`;
-    const METHOD = 'PATCH';
+    const PATH = `inventory`;
+    const METHOD = 'GET';
 
     const response = await fetch(`http://localhost:8080/api/${PATH}`, {
       method: METHOD,
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${STAFF_TOKEN}`,
       },
-      body: JSON.stringify({
-        start_date: '2026-02-12',
-        end_date: '2026-12-12',
-        status: 'ACTIVE',
-        new_animal_status: 'FOSTERED',
-        foster_user: regularUser.id,
-        assigned_by_staff: staffUser.id,
-      }),
     });
     const data = await response.json();
     console.log({ data });
