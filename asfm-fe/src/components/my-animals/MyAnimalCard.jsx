@@ -1,9 +1,8 @@
 import getBirthdayYear from '@/utils/getBirthday';
 import { Card } from '../ui/card';
 
-export default function MyAnimalCard({animal}) {
-
-    const age = getBirthdayYear(animal.dob)
+export default function MyAnimalCard({ animal }) {
+  const age = getBirthdayYear(animal.dob);
 
   return (
     <>
@@ -17,13 +16,19 @@ export default function MyAnimalCard({animal}) {
           <div className="flex flex-wrap gap-5">
             <AnimalStatPill label={'animal id'} data={animal.chip_id ?? 'No id'} />
             <AnimalStatPill label={'name'} data={animal.name ?? 'No name'} />
-            <AnimalStatPill label={'age'} data={age ? `${age} ${age > 1 ? 'yrs': 'yr'}` : 'No age'}/>
+            <AnimalStatPill
+              label={'age'}
+              data={age ? `${age} ${age > 1 ? 'yrs' : 'yr'}` : 'No age'}
+            />
             <AnimalStatPill label={'Species'} data={animal.species ?? 'Unknown'} />
             <AnimalStatPill label={'Sex'} data={animal.sex ?? 'Sex unknown'} />
             <AnimalStatPill label={'Fixed Status'} data={animal.altered ? 'Fixed' : 'Not Fixed'} />
           </div>
           <div className="flex justify-center w-full md:w-auto">
-            <a href={`/single-animal/${animal.id}`} className="ring-1 ring-gray-200 rounded-xl bg-gray-50 hover:bg-gray-100 px-4 py-2 flex flex-col justify-center gap-y-0.5 w-full md:w-auto items-center hover:underline underline-offset-2">
+            <a
+              href={`/single-animal/${animal.id}`}
+              className="ring-1 ring-gray-200 rounded-xl bg-gray-50 hover:bg-gray-100 px-4 py-2 flex flex-col justify-center gap-y-0.5 w-full md:w-auto items-center hover:underline underline-offset-2"
+            >
               Read More
             </a>
           </div>

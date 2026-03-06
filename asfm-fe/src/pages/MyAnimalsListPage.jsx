@@ -50,10 +50,10 @@ export default function MyAnimalsListPage() {
 
   return (
     <div className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-      <div className="ring-2 p-5 rounded-lg bg-accent">
+      <div className="ring-2 p-5 rounded-lg bg-secondary">
         <h1 className="text-center text-2xl">My Animals</h1>
       </div>
-      <div className="mt-10 p-4 ring-2 rounded-lg flex flex-col gap-y-5 min-h-screen bg-accent">
+      <div className="mt-10 p-4 ring-2 rounded-lg flex flex-col gap-y-5 min-h-screen bg-secondary">
         {myAnimals.length === 0 ? (
           <div className="flex flex-col  items-center pt-5">
             <h2 className="text-2xl font-semibold">No animals registered</h2>

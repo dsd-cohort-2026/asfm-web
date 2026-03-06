@@ -7,7 +7,6 @@ import MedicalLogCard from '@/components/single-animal/MedicalLogCard';
 import { AnimalGeneralInfo } from '@/components/single-animal/AnimalGeneralInfo';
 
 export default function SingleAnimalPage({ id }) {
-
   const [viewAnimal, setViewAnimal] = useState('');
   const [animalLogs, setAnimalLogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
