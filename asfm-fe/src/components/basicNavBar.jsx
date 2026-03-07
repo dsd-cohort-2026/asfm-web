@@ -36,7 +36,7 @@ function BasicNavBar() {
         <Button variant="outline">Home</Button>
         {/* is status it not guess add animal div */}
         <Button variant="outline">All Users</Button>
-        <Button variant="outline" className="text-s">
+        <Button variant="outline" className="text-s" onClick={() => navigate({to: '/single-animal'})}>
           My Animals
         </Button>
         <Button variant="outline" onClick={handleAnimals}>

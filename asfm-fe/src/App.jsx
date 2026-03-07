@@ -9,11 +9,12 @@ import { ModalDialog } from './components/ModalDialog';
 import ConfirmationDialog from './components/confirmationDialog';
 import { useState } from 'react';
 import { DashboardSummaryCard } from './components/DashboardSummaryCard';
-import { DASHBOARD_CARD_CONFIG } from "./config/dashboardCard";
+import { DASHBOARD_CARD_CONFIG } from './config/dashboardCard';
 import { useDashboardSummary } from './hooks/useDashboardSummary';
 import CustomBadge from './components/custom/CustomBadge';
 import { useBoundStore } from './store';
 import { DatePickerSimple } from './components/dateTimePicker';
+import { Link } from '@tanstack/react-router';
 
 function App() {
   // Loaned items table columns
@@ -58,19 +59,19 @@ function App() {
   // Filter bar state
   const [filters, setFilters] = useState({
     status: '',
-    search: ''
+    search: '',
   });
   const handleFilter = () => {
-    console.log("Filters applied -->", filters);
+    console.log('Filters applied -->', filters);
   };
 
   const handleAddNew = () => {
-    console.log("Add new button was clicked");
+    console.log('Add new button was clicked');
   };
 
   const handleClearFilters = () => {
     setFilters({ status: '', search: '' });
-    console.log("Filters have been cleared");
+    console.log('Filters have been cleared');
   };
 
   return (
@@ -96,16 +97,30 @@ function App() {
 
       <div id="examples" className="flex flex-col items-center h-auto gap-4 mt-17.5">
         <div>
-          <div className='text-center'>Global State Test</div>
+          <Link to="/single-animal/$id" params={{ id: '550e8400-e29b-41d4-a716-446655550001' }}>
+            Go to animal 550e8400-e29b-41d4-a716-446655550001
+          </Link>
+          <Link
+            to="/my-animals/$id"
+            className="block"
+            params={{ id: '550e8400-e29b-41d4-a716-446655440101' }}
+          >
+            Go to user (John Doe) 550e8400-e29b-41d4-a716-446655440101
+          </Link>
+        </div>
+        <div>
+          <div className="text-center">Global State Test</div>
           <div>
-            <div className='flex flex-col items-center'>
+            <div className="flex flex-col items-center">
               {userAnimals.map((animal, index) => (
                 <span key={index} className="pr-2">
                   {animal.name}
                 </span>
               ))}
             </div>
-            <Button className="mt-2" onClick={() => addUserAnimal({ name: 'Chewy' })}>Update state and add dog to the list</Button>
+            <Button className="mt-2" onClick={() => addUserAnimal({ name: 'Chewy' })}>
+              Update state and add dog to the list
+            </Button>
           </div>
         </div>
 
@@ -118,12 +133,12 @@ function App() {
           <Button variant="ghost">Ghost button</Button>
           <Button variant="link">Link button</Button>
         </div>
-
+        <Button onClick={() => navigate({ to: '/single-animal' })}>Go to single animal</Button>
         <FilterSelect
           selectTriggerClassName="w-[300px]"
           selectItems={['approved', 'pending', 'denied']}
         />
-        <DatePickerSimple className="w-44"/>
+        <DatePickerSimple className="w-44" />
         <ModalDialog
           trigger={<Button>Open Modal</Button>}
           title={'Title'}
@@ -150,32 +165,32 @@ function App() {
         >
           Open Success
         </Button>
-        <Button variant="destructive" onClick={() => openDialog('error', 'Failed', 'Could not add item to inventory.')}>
+        <Button
+          variant="destructive"
+          onClick={() => openDialog('error', 'Failed', 'Could not add item to inventory.')}
+        >
           Open Error
         </Button>
         {showConfirmation && (
-          <ConfirmationDialog
-            {...dialogConfig}
-            onClose={() => setShowConfirmation(false)}
-          />
+          <ConfirmationDialog {...dialogConfig} onClose={() => setShowConfirmation(false)} />
         )}
       </div>
 
       <div className="flex justify-center">Dashboard Summary Card</div>
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-full gap-5 px-5">
-            {DASHBOARD_CARD_CONFIG.map((card) => {
-              const Icon = card.icon;
-              return (
-                <DashboardSummaryCard
-                  key={card.id}
-                  title={card.title}
-                  value={isloading ? 'Loading...' : data ? data[card.dataKey] : 'N/A'}
-                  subtitle={card.subtitle}
-                  icon={<Icon className="h-5 w-5" />}
-                />
-              );
-            })}
+          {DASHBOARD_CARD_CONFIG.map((card) => {
+            const Icon = card.icon;
+            return (
+              <DashboardSummaryCard
+                key={card.id}
+                title={card.title}
+                value={isloading ? 'Loading...' : data ? data[card.dataKey] : 'N/A'}
+                subtitle={card.subtitle}
+                icon={<Icon className="h-5 w-5" />}
+              />
+            );
+          })}
         </div>
       </div>
       <div className="flex justify-center">Admin Dashboard Card</div>
