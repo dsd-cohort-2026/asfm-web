@@ -19,13 +19,6 @@ export default function FilterBar({
     <div className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg">
       {children}
       <Button
-        onClick={handleFilterSearch}
-        className="px-4 py-2 bg-primary text-white rounded"
-      >
-        Filter Search
-      </Button>
-
-      <Button
         onClick={handleClear}
         variant="outline"
       >

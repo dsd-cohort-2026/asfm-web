@@ -1,12 +1,12 @@
-import FilterBar from '../components/FilterBar';
-import SearchBar from '../components/SearchBar';
-import FilterSelect from '../components/custom/FilterSelect';
-import { Button } from '../components/ui/button';
-import { ReusableTable } from '../components/table_components';
-import { mockLoanedItems } from '../features/mockLoanedItems';
-import DashboardCard from '../components/custom/DashboardCard';
-import { ModalDialog } from '../components/ModalDialog';
-import ConfirmationDialog from '../components/confirmationDialog';
+import FilterBar from './components/FilterBar';
+import InputGroupForSearch from './components/InputGroupForSearch';
+import FilterSelect from './components/custom/FilterSelect';
+import { Button } from './components/ui/button';
+import { ReusableTable } from './components/table_components';
+import { mockLoanedItems } from './features/mockLoanedItems';
+import DashboardCard from './components/custom/DashboardCard';
+import { ModalDialog } from './components/ModalDialog';
+import ConfirmationDialog from './components/confirmationDialog';
 import { useState } from 'react';
 import { DashboardSummaryCard } from '../components/DashboardSummaryCard';
 import { DASHBOARD_CARD_CONFIG } from '../config/dashboardCard';
@@ -91,10 +91,10 @@ function ExamplesPage() {
           selectTriggerClassName="w-[300px]"
           selectItems={['approved', 'pending', 'denied']}
         />
-        <SearchBar
+        <InputGroupForSearch
+          placeholder_text="Value to Match"
           value={filters.search}
           onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-          placeholder="Value to Match"
         />
       </FilterBar>
 

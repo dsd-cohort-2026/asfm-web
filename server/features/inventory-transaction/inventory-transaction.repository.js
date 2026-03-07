@@ -1,61 +1,152 @@
-let inventoryTransactionData = [
-  {
-    id: "550e8400-e29b-41d4-a716-446655440001",
-    created_at: "2026-02-15T17:30:00Z",
-    foster_user_id: "550e8400-e29b-41d4-a716-446655440100",
-    created_by_staff_user_id: "550e8400-e29b-41d4-a716-446655440200",
-    item_id: "550e8400-e29b-41d4-a716-446655440300",
-    inventory_id: "550e8400-e29b-41d4-a716-446655440400",
-    qty_out: 5,
-    status: "pending",
-    type: "distribution",
-    notes: "Dog food for new foster placement",
-    return_date: "2026-03-15"
-  },
-  {
-    id: "550e8400-e29b-41d4-a716-446655440002",
-    created_at: "2026-02-14T10:15:00Z",
-    foster_user_id: "550e8400-e29b-41d4-a716-446655440101",
-    created_by_staff_user_id: "550e8400-e29b-41d4-a716-446655440201",
-    item_id: "550e8400-e29b-41d4-a716-446655440301",
-    inventory_id: "550e8400-e29b-41d4-a716-446655440401",
-    qty_out: 2,
-    status: "complete",
-    type: "loan",
-    notes: "Cat carriers for vet visit",
-    return_date: "2026-02-16"
-  },
-  {
-    id: "550e8400-e29b-41d4-a716-446655440003",
-    created_at: "2026-02-13T14:45:00Z",
-    foster_user_id: "550e8400-e29b-41d4-a716-446655440102",
-    created_by_staff_user_id: "550e8400-e29b-41d4-a716-446655440202",
-    item_id: "550e8400-e29b-41d4-a716-446655440302",
-    inventory_id: "550e8400-e29b-41d4-a716-446655440402",
-    qty_out: 10,
-    status: "returned",
-    type: "distribution",
-    notes: "Puppy training pads",
-    return_date: null
-  }
-];
+const prisma = require('../../connections/prisma-client');
 
 exports.findAll = async () => {
-  return inventoryTransactionData;
+  return await prisma.inventoryTransaction.findMany();
 };
 
 exports.findById = async (id) => {
-  return inventoryTransactionData.find(item => item.id === id);
+  return await prisma.inventoryTransaction.findUnique({ where: { id } });
 };
 
-exports.create = async (newTransaction) => {
+exports.createIntakeTransaction = async (data) => {
+  const {
+    quantity,
+    status,
+    notes,
+    staff_user_id,
+    foster_user_id,
+    item_id,
+    item_name,
+    item_category,
+    item_species,
+    item_unit,
+    item_is_active,
+    item_brand,
+    item_description,
+    item_food_life_stage,
+    item_crate_size,
+    item_crate_status,
+    item_medication_dose,
+    item_medication_side_effects,
+    item_medication_administration_route,
+    inventory_id,
+    inventory_expiration_date,
+  } = data;
 
-  const newId = `550e8400-e29b-41d4-a716-44665544${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
-  const newRecord = {
-    id: newId,
-    created_at: new Date().toISOString(),
-    ...newTransaction,
-  };
-  inventoryTransactionData.push(newRecord);
-  return newRecord;
-}
+  return await prisma.$transaction(async (tx) => {
+    let resolvedItemId = item_id;
+    if (!item_id) {
+      const newItem = await tx.item.create({
+        data: {
+          name: item_name,
+          category: item_category,
+          species: item_species,
+          unit: item_unit,
+          is_active: item_is_active,
+          brand: item_brand,
+          description: item_description,
+          ...(item_category === 'FOOD' && {
+            food: { create: { life_stage: item_food_life_stage } },
+          }),
+          ...(item_category === 'CRATE' && {
+            crate: { create: { size: item_crate_size, status: item_crate_status } },
+          }),
+          ...(item_category === 'MEDICINE' && {
+            medication: {
+              create: {
+                recommended_dose: item_medication_dose,
+                side_effects: item_medication_side_effects,
+                administration_route: item_medication_administration_route,
+              },
+            },
+          }),
+        },
+      });
+      resolvedItemId = newItem.id;
+    }
+
+    let resolvedInventoryId = inventory_id;
+    if (!inventory_id) {
+      const newInventory = await tx.inventory.create({
+        data: {
+          quantity,
+          expiration_date: inventory_expiration_date,
+          item: { connect: { id: resolvedItemId } },
+        },
+      });
+      resolvedInventoryId = newInventory.id;
+    } else {
+      await tx.inventory.update({
+        where: { id: inventory_id },
+        data: { quantity: { increment: quantity } },
+      });
+    }
+
+    return await tx.inventoryTransaction.create({
+      data: {
+        quantity,
+        status,
+        type: 'INTAKE',
+        notes,
+        staff_user: { connect: { id: staff_user_id } },
+        ...(foster_user_id && { foster_user: { connect: { id: foster_user_id } } }),
+        item: { connect: { id: resolvedItemId } },
+        inventory: { connect: { id: resolvedInventoryId } },
+      },
+    });
+  });
+};
+
+exports.createDistributeTransaction = async ({
+  quantity,
+  type,
+  status,
+  notes,
+  staff_user_id,
+  foster_user_id,
+  item_id,
+}) => {
+  return await prisma.$transaction(async (tx) => {
+    const inventories = await tx.inventory.findMany({
+      where: { item_id },
+      orderBy: [{ expiration_date: { sort: 'asc', nulls: 'last' } }],
+    });
+
+    const totalAvailable = inventories.reduce((sum, inv) => sum + inv.quantity, 0);
+    if (totalAvailable < quantity) {
+      const err = new Error(
+        `Insufficient inventory: ${quantity - totalAvailable} more units required than available`,
+      );
+      err.statusCode = 409;
+      throw err;
+    }
+
+    let remaining = quantity;
+    const transactions = [];
+
+    for (const inv of inventories) {
+      if (remaining <= 0) break;
+      const deduct = Math.min(inv.quantity, remaining);
+      await tx.inventory.update({
+        where: { id: inv.id },
+        data: { quantity: inv.quantity - deduct },
+      });
+      const txRecord = await tx.inventoryTransaction.create({
+        data: {
+          quantity: deduct,
+          type,
+          status,
+          notes,
+          item: { connect: { id: item_id } },
+          inventory: { connect: { id: inv.id } },
+          staff_user: { connect: { id: staff_user_id } },
+          foster_user: { connect: { id: foster_user_id } },
+        },
+      });
+      transactions.push(txRecord);
+      remaining -= deduct;
+    }
+    console.log({ transactions });
+    return transactions;
+  });
+};

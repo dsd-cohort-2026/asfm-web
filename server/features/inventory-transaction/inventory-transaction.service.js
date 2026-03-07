@@ -2,7 +2,7 @@ const inventoryTransactionRepository = require('./inventory-transaction.reposito
 
 exports.getAllInventoryTransactions = async () => {
   const inventoryTransactions = await inventoryTransactionRepository.findAll();
-  return inventoryTransactions.map(inventoryTransaction => ({
+  return inventoryTransactions.map((inventoryTransaction) => ({
     id: inventoryTransaction.id,
     created_at: inventoryTransaction.created_at,
     foster_user_id: inventoryTransaction.foster_user_id,
@@ -18,7 +18,9 @@ exports.getAllInventoryTransactions = async () => {
 };
 
 exports.getInventoryTransactionById = async (id) => {
-  const inventoryTransaction = await inventoryTransactionRepository.findAll().then(items => items.find(item => item.id === id));
+  const inventoryTransaction = await inventoryTransactionRepository
+    .findAll()
+    .then((items) => items.find((item) => item.id === id));
   if (!inventoryTransaction) {
     return null;
   }
@@ -36,13 +38,68 @@ exports.getInventoryTransactionById = async (id) => {
     notes: inventoryTransaction.notes,
     return_date: inventoryTransaction.return_date,
   };
-}
+};
 
-exports.createNewInventoryTransaction = async (transaction) => {
+exports.createIntakeTransaction = async (body) => {
+  const {
+    quantity,
+    status,
+    notes,
+    staff_user,
+    foster_user,
+    item_id,
+    item_name,
+    item_category,
+    item_species,
+    item_unit,
+    item_is_active,
+    item_brand,
+    item_description,
+    item_food_life_stage,
+    item_crate_size,
+    item_crate_status,
+    item_medication_dose,
+    item_medication_side_effects,
+    item_medication_administration_route,
+    inventory_id,
+    inventory_expiration_date,
+  } = body;
 
-  if (!transaction) {
-    return null;
-  }
+  return await inventoryTransactionRepository.createIntakeTransaction({
+    quantity,
+    status,
+    notes: notes || '-',
+    staff_user_id: staff_user,
+    foster_user_id: foster_user,
+    item_id,
+    item_name,
+    item_category,
+    item_species,
+    item_unit,
+    item_is_active,
+    item_brand: item_brand,
+    item_description: item_description,
+    item_food_life_stage,
+    item_crate_size,
+    item_crate_status,
+    item_medication_dose,
+    item_medication_side_effects: item_medication_side_effects || '',
+    item_medication_administration_route,
+    inventory_id,
+    inventory_expiration_date: inventory_expiration_date || null,
+  });
+};
 
-  return transaction;
-}
+exports.createDistributeTransaction = async (body) => {
+  const { quantity, type, status, notes, staff_user, foster_user, item_id } = body;
+
+  return await inventoryTransactionRepository.createDistributeTransaction({
+    quantity,
+    type,
+    status,
+    notes: notes,
+    staff_user_id: staff_user,
+    foster_user_id: foster_user,
+    item_id,
+  });
+};

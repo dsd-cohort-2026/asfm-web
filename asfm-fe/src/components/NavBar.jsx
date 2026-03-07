@@ -22,16 +22,23 @@ function NavBar() {
         <Button variant="outline" onClick={() => navigate({ to: '/' })}>
           Home
         </Button>
-        {userRole === 'USER' && <Button variant="outline">My Animals</Button>}
+        {userRole === 'USER' && (
+          <>
+            <Button variant="outline">My Animals</Button>
+            <Button variant="outline" onClick={() => navigate({ to: '/my-supplies' })}>
+              My Supplies
+            </Button>
+          </>
+        )}
         {userRole === 'STAFF' && (
           <>
             <Button variant="outline" onClick={() => navigate({ to: '/admin-portal' })}>
               Admin Portal
             </Button>
             <Button variant="outline">All Users</Button>
-            <Button variant="outline">Animals</Button>
-            <Button variant="outline">Inventory</Button>
-            <Button variant="outline">Loans</Button>
+            <Button variant="outline" onClick={() => navigate({ to: '/animals' })}>Animals</Button>
+            <Button variant="outline" onClick={() => navigate({ to: '/inventory' })}>Inventory</Button>
+            <Button variant="outline" onClick={() => navigate({ to: '/loans' })}>Loans</Button>
             <Button variant="outline" onClick={() => navigate({ to: '/medical-logs' })}>
               Med Log
             </Button>
