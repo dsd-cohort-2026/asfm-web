@@ -18,6 +18,7 @@ import { createFileRoute } from '@tanstack/react-router';
 export const Route = createFileRoute('/Examples')({
   component: ExamplesPage,
 });
+
 function ExamplesPage() {
   // Loaned items table columns
   const loanedItemsColumns = [
